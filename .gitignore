@@ -1,0 +1,31 @@
+# Зависимости
+node_modules/
+client/node_modules/
+
+# База данных
+database/*.db
+database/*.db-journal
+
+# Загруженные файлы
+uploads/
+
+# Логи
+*.log
+npm-debug.log*
+
+# Переменные окружения
+.env
+.env.local
+
+# Редакторы и IDE
+.vscode/
+.idea/
+.DS_Store
+
+# Сборки фронтенда
+client/build/
+client/.cache/
+
+# Временные файлы
+tmp/
+temp/
