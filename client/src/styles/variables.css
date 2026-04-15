@@ -1,0 +1,32 @@
+:root {
+  /* Colors */
+  --color-primary: #7B62C6;
+  --color-primary-light: #9b82e6;
+  --color-primary-dark: #5a46a0;
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-gray-light: #f5f5f5;
+  --color-gray: #cccccc;
+  --color-gray-dark: #666666;
+
+  /* Header */
+  --header-height: 50px;
+  --header-bg: rgba(123, 98, 198, 0.3); /* 30% прозрачности */
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 50px;
+
+  /* Typography */
+  --font-family: 'Oswald', sans-serif;
+  --font-size-small: 20px;
+  --font-size-base: 24px;
+  --font-size-large: 40px;
+
+  /* Transitions */
+  --transition-default: all 0.3s ease;
+}

@@ -1,0 +1,43 @@
+/* Подключение шрифта Oswald через Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+
+/* Базовые стили текстов */
+h1, .h1 {
+  font-size: var(--font-size-large);
+  font-weight: 400; /* regular */
+  line-height: 1.2;
+}
+
+h2, .h2 {
+  font-size: 32px;
+  font-weight: 400;
+}
+
+.subtitle {
+  font-size: var(--font-size-large);
+  font-weight: 400;
+}
+
+.description {
+  font-size: var(--font-size-base);
+  font-weight: 300; /* light */
+}
+
+.button-text {
+  font-size: var(--font-size-small);
+  font-weight: 200; /* extraLight */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Для кнопок можно использовать класс .btn */
+.btn {
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 200;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-default);
+}

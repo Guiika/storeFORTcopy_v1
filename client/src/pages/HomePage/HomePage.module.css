@@ -1,0 +1,142 @@
+/* Hero секция */
+.hero {
+  display: flex;
+  min-height: 600px;
+  padding: 50px;
+  gap: 40px;
+}
+
+.heroLeft {
+  flex: 1;
+}
+
+.heroBanner img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.heroRight {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+}
+
+.heroText {
+  text-align: left;
+}
+
+.heroSmall {
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+}
+
+.heroLarge {
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 25px;
+}
+
+.heroButton {
+  background-color: #7B62C6;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px;
+  font-weight: 200;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.heroButton:hover {
+  background-color: #5a46a0;
+}
+
+.heroImage img {
+  max-width: 300px;
+  border-radius: 12px;
+}
+
+.heroDesc {
+  font-size: 18px;
+  font-weight: 300;
+  color: #555;
+}
+
+/* Shop Banner */
+.shopBanner {
+  padding: 50px;
+  text-align: center;
+}
+
+.bannerImage {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+/* Brands Section */
+.brandsSection {
+  padding: 40px 50px;
+  background-color: #f8f8f8;
+}
+
+.brandsContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.brandItem {
+  font-size: 24px;
+  font-weight: 300;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.brandItem:hover {
+  color: #7B62C6;
+}
+
+/* New Arrivals */
+.newArrivals {
+  padding: 50px;
+  background: #f9f9f9;
+}
+
+.sectionTitle {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 30px;
+}
+
+.noProducts {
+  text-align: center;
+  padding: 40px;
+  font-size: 20px;
+  color: #999;
+}
+
+/* Loader */
+.loader {
+  text-align: center;
+  padding: 50px;
+  font-size: 20px;
+}
