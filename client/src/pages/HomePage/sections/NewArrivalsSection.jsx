@@ -9,7 +9,7 @@ const NewArrivalsSection = ({ products, onProductClick }) => {
 
   return (
     <section className={styles.newArrivals}>
-      <h2 className={styles.sectionTitle}>Новинки</h2>
+      <h2 className={styles.sectionTitle}>НОВИНКИ</h2>
       <div className={styles.productsGrid}>
         {products.map(product => (
           <ProductCard

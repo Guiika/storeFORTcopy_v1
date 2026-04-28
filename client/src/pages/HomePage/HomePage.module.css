@@ -1,130 +1,183 @@
-/* Hero секция */
+/* Hero section */
 .hero {
-  display: flex;
-  min-height: 600px;
-  padding: 50px;
-  gap: 40px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: transparent;
 }
 
 .heroLeft {
-  flex: 1;
+  min-width: 0;
 }
 
-.heroBanner img {
+.heroMainBanner {
   width: 100%;
-  height: auto;
-  border-radius: 12px;
+  height: 100%;
+  min-height: 640px;
+  object-fit: cover;
+  display: block;
 }
 
 .heroRight {
-  flex: 1;
+  padding: 50px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
-  padding: 20px;
+  justify-content: flex-start;
+  min-width: 0;
 }
 
-.heroText {
-  text-align: left;
+.heroTextRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
 }
 
 .heroSmall {
-  font-size: 18px;
+  margin: 0;
+  font-family: 'Oswald', sans-serif;
+  font-size: 24px;
   font-weight: 300;
-  letter-spacing: 2px;
-  margin-bottom: 15px;
+  line-height: 1.2;
+  color: #2f2f2f;
 }
 
 .heroLarge {
-  font-size: 48px;
+  margin: 0;
+  max-width: 330px;
+  text-align: right;
+  font-family: 'Oswald', sans-serif;
+  font-size: 40px;
   font-weight: 400;
-  line-height: 1.2;
-  margin-bottom: 25px;
+  line-height: 1.1;
+  color: #111111;
+}
+
+.heroContentRow {
+  margin-top: 100px;
+  display: flex;
+  align-items: flex-start;
+  gap: 50px;
+}
+
+.heroColumnLeft {
+  width: 300px;
+}
+
+.heroFirstImage {
+  width: 300px;
+  height: 250px;
+  object-fit: cover;
+  display: block;
 }
 
 .heroButton {
-  background-color: #7B62C6;
-  color: white;
+  margin-top: 110px;
+  width: 100%;
+  height: 44px;
   border: none;
-  padding: 12px 30px;
+  background: #a48de2;
+  color: #ffffff;
   font-family: 'Oswald', sans-serif;
-  font-size: 20px;
-  font-weight: 200;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1;
   cursor: pointer;
-  transition: background 0.3s;
 }
 
-.heroButton:hover {
-  background-color: #5a46a0;
-}
-
-.heroImage img {
-  max-width: 300px;
-  border-radius: 12px;
+.heroColumnRight {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .heroDesc {
-  font-size: 18px;
+  margin: 0;
+  width: 250px;
+  text-align: right;
+  font-family: 'Oswald', sans-serif;
+  font-size: 24px;
   font-weight: 300;
-  color: #555;
+  line-height: 1.2;
+  color: #2f2f2f;
+}
+
+.heroSecondImage {
+  margin-top: 50px;
+  width: 250px;
+  height: 300px;
+  object-fit: cover;
+  display: block;
 }
 
 /* Shop Banner */
 .shopBanner {
-  padding: 50px;
-  text-align: center;
+  margin-top: 200px;
 }
 
 .bannerImage {
   width: 100%;
-  max-height: 400px;
+  height: 550px;
   object-fit: cover;
-  border-radius: 16px;
+  display: block;
 }
 
 /* Brands Section */
 .brandsSection {
-  padding: 40px 50px;
-  background-color: #f8f8f8;
+  margin-top: 70px;
+  padding: 0 50px;
 }
 
 .brandsContainer {
+  width: 100%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  gap: 32px;
   flex-wrap: wrap;
-  gap: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
-.brandItem {
-  font-size: 24px;
-  font-weight: 300;
-  color: #333;
+
+.brandButton {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
   cursor: pointer;
-  transition: color 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.brandItem:hover {
-  color: #7B62C6;
+.brandLogo {
+  height: 55px;
+  width: auto;
+  max-width: 100%;
+  display: block;
 }
 
 /* New Arrivals */
 .newArrivals {
-  padding: 50px;
-  background: #f9f9f9;
+  margin-top: 200px;
+  padding: 0 50px;
 }
 
 .sectionTitle {
+  margin: 0;
   text-align: center;
-  font-size: 32px;
-  margin-bottom: 40px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1;
 }
 
 .productsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 30px;
+  margin-top: 80px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
 }
 
 .noProducts {

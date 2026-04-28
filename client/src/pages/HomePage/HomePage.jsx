@@ -16,7 +16,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await productsService.getNewArrivals();
+        const data = await productsService.getNewArrivals(4);
         setNewArrivals(data);
       } catch (error) {
         console.error('Failed to load new arrivals', error);

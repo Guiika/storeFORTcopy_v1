@@ -1,24 +1,30 @@
 import React from 'react';
 import styles from '../HomePage.module.css';
 
-const BrandsSection = ({ onBrandClick }) => {
-  // Временные бренды (позже можно загрузить из API)
-  const brands = ['Nike', 'Adidas', 'Puma', 'Zara', 'H&M', 'Gucci'];
+const brands = [
+  { key: 'PINKO', logo: '/иконки/pinko.svg' },
+  { key: 'MaxMara', logo: '/иконки/maxmara.svg' },
+  { key: 'PATRIZIA PEPE', logo: '/иконки/pepe.svg' },
+  { key: 'PHILIPP PLEIN', logo: '/иконки/pp.svg' },
+];
 
+const BrandsSection = ({ onBrandClick }) => {
   return (
-    <div className={styles.brandsSection}>
+    <section className={styles.brandsSection}>
       <div className={styles.brandsContainer}>
-        {brands.map(brand => (
-          <div 
-            key={brand} 
-            className={styles.brandItem}
-            onClick={() => onBrandClick(brand)}
+        {brands.map((brand) => (
+          <button
+            key={brand.key}
+            type="button"
+            className={styles.brandButton}
+            onClick={() => onBrandClick(brand.key)}
+            aria-label={`Открыть каталог бренда ${brand.key}`}
           >
-            {brand}
-          </div>
+            <img src={brand.logo} alt={brand.key} className={styles.brandLogo} />
+          </button>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
