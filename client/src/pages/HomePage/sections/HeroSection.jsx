@@ -1,23 +1,27 @@
 import React from 'react';
 import styles from '../HomePage.module.css';
 
+import banner from '../../../assets/posters/banner.png';
+import posterMiniBag from '../../../assets/posters/poster_mini_bag.png';
+import posterMiniAcsses from '../../../assets/posters/poster_mini_acsses.png';
+
 const HeroSection = ({ onCatalogClick }) => {
   return (
     <section className={styles.hero}>
       <div className={styles.heroLeft}>
-        <img src="/плакаты/банер.png" alt="Главный баннер" className={styles.heroMainBanner} />
+        <img src={banner} alt="Главный баннер" className={styles.heroMainBanner} />
       </div>
 
       <div className={styles.heroRight}>
         <div className={styles.heroTextRow}>
           <p className={styles.heroSmall}>Вдохновляем на смелые решения</p>
           <h1 className={styles.heroLarge}>МУЛЬТИБРЕНДОВЫЙ БУТИК</h1>
-                  </div>
+        </div>
 
         <div className={styles.heroContentRow}>
           <div className={styles.heroColumnLeft}>
             <img
-              src="/плакаты/photo_2024-08-11_19-21-32%201.png"
+              src={posterMiniBag}
               alt="Сумка"
               className={styles.heroFirstImage}
             />
@@ -35,7 +39,7 @@ const HeroSection = ({ onCatalogClick }) => {
               галереи Grand Marina
             </p>
             <img
-              src="/плакаты/photo_2025-03-14_17-18-48%201.png"
+              src={posterMiniAcsses}
               alt="Аксессуар"
               className={styles.heroSecondImage}
             />
@@ -47,4 +51,3 @@ const HeroSection = ({ onCatalogClick }) => {
 };
 
 export default HeroSection;
-

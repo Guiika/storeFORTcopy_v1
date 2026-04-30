@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="app">
       <Header />
-      <main style={{ marginTop: '50px' }}>
+      <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
         </Routes>

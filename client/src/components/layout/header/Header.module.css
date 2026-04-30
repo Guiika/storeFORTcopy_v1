@@ -63,13 +63,14 @@
   background: transparent;
   color: inherit;
   font-size: var(--font-size-small);
-  line-height: 1;
+  line-height: 1.2;  
+  font-weight: 10;
   font-family: var(--font-family);
   text-transform: lowercase;
   cursor: pointer;
   padding: 0;
   transition: opacity 200ms ease;
-}
+} 
 
 .navButton:hover,
 .navButton:focus-visible,
@@ -82,14 +83,15 @@
 }
 
 .dropdown {
-  position: absolute;
-  top: 50px;
+  position: fixed;
+  top: 40px;
   left: 0;
-  min-width: 240px;
-  padding: 20px 0;
-  border-radius: 0 0 8px 8px;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(4px);
+  z-index: 1090;
+  width: 100%;
+  height: 250px;
+  padding: 55px 0 0 250px;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.5);
   animation: fadeDown 180ms ease;
 }
 
@@ -97,10 +99,16 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(5, auto);
+  column-gap: 70px;
+  row-gap: 18px;
+  width: max-content;
 }
 
 .dropdownItem + .dropdownItem {
-  margin-top: 14px;
+  margin-top: 0;
 }
 
 .dropdownButton {
@@ -109,12 +117,13 @@
   color: #000000;
   font-size: var(--font-size-small);
   font-family: var(--font-family);
-  line-height: 1;
+  font-weight: 100;
+  line-height: 1.2;
   cursor: pointer;
   padding: 0;
   text-align: left;
+  white-space: nowrap;
 }
-
 .rightActions {
   display: flex;
   align-items: center;
@@ -135,8 +144,7 @@
 }
 
 .iconButton svg {
-  width: 24px;
-  height: 24px;
+  height: 18px;
   display: block;
 }
 

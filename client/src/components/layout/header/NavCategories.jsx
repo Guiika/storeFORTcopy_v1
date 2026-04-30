@@ -30,6 +30,8 @@ const NavCategories = ({
             items={category.children}
             categoryName={category.name}
             onSubcategoryClick={onSubcategoryClick}
+            onMouseEnter={() => onCategoryEnter(category.id)}
+            onMouseLeave={onCategoryLeave}
           />
         )}
       </div>

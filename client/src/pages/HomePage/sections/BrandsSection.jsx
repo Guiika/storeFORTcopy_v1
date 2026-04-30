@@ -1,11 +1,16 @@
 import React from 'react';
 import styles from '../HomePage.module.css';
 
+import pinkoLogo from '../../../assets/vector/pinko.svg';
+import maxMaraLogo from '../../../assets/vector/maxmara.svg';
+import pepeLogo from '../../../assets/vector/pepe.svg';
+import ppLogo from '../../../assets/vector/pp.svg';
+
 const brands = [
-  { key: 'PINKO', logo: '/иконки/pinko.svg' },
-  { key: 'MaxMara', logo: '/иконки/maxmara.svg' },
-  { key: 'PATRIZIA PEPE', logo: '/иконки/pepe.svg' },
-  { key: 'PHILIPP PLEIN', logo: '/иконки/pp.svg' },
+  { key: 'PINKO', logo: pinkoLogo },
+  { key: 'MaxMara', logo: maxMaraLogo },
+  { key: 'PATRIZIA PEPE', logo: pepeLogo },
+  { key: 'PHILIPP PLEIN', logo: ppLogo },
 ];
 
 const BrandsSection = ({ onBrandClick }) => {

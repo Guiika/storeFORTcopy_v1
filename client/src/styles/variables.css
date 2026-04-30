@@ -11,7 +11,7 @@
 
   /* Header */
   --header-height: 50px;
-  --header-bg: rgba(123, 98, 198, 0.3); /* 30% прозрачности */
+  --header-bg: rgba(123, 98, 198, 0.3);
 
   /* Spacing */
   --spacing-xs: 4px;
@@ -23,9 +23,9 @@
 
   /* Typography */
   --font-family: 'Oswald', sans-serif;
-  --font-size-small: 20px;
-  --font-size-base: 24px;
-  --font-size-large: 40px;
+  --font-size-small: 18px;
+  --font-size-base: 20px;
+  --font-size-large: 35px;
 
   /* Transitions */
   --transition-default: all 0.3s ease;

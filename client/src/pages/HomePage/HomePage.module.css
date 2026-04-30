@@ -4,6 +4,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   background: transparent;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .heroLeft {
@@ -12,14 +14,14 @@
 
 .heroMainBanner {
   width: 100%;
-  height: 100%;
+  height: 850px;
   min-height: 640px;
   object-fit: cover;
   display: block;
 }
 
 .heroRight {
-  padding: 50px;
+  padding: 150px 50px 50px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -35,53 +37,50 @@
 
 .heroSmall {
   margin: 0;
-  font-family: 'Oswald', sans-serif;
-  font-size: 24px;
-  font-weight: 300;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
   line-height: 1.2;
-  color: #2f2f2f;
 }
 
 .heroLarge {
   margin: 0;
   max-width: 330px;
   text-align: right;
-  font-family: 'Oswald', sans-serif;
-  font-size: 40px;
-  font-weight: 400;
-  line-height: 1.1;
-  color: #111111;
+  font-family: var(--font-family);
+  font-size: var(--font-size-large);
+  line-height: 1.2;
 }
 
 .heroContentRow {
   margin-top: 100px;
   display: flex;
   align-items: flex-start;
+  justify-content: space-between;
   gap: 50px;
 }
 
 .heroColumnLeft {
-  width: 300px;
+  width: 250px;
 }
 
 .heroFirstImage {
-  width: 300px;
-  height: 250px;
+  width: 250px;
+  height: 180px;
   object-fit: cover;
   display: block;
 }
 
 .heroButton {
-  margin-top: 110px;
+  margin-top: 150px;
   width: 100%;
   height: 44px;
   border: none;
   background: #a48de2;
   color: #ffffff;
-  font-family: 'Oswald', sans-serif;
-  font-size: 24px;
-  font-weight: 300;
-  line-height: 1;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 10;
+  line-height: 1.2;
   cursor: pointer;
 }
 
@@ -89,24 +88,23 @@
   width: 250px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
 }
 
 .heroDesc {
   margin: 0;
   width: 250px;
   text-align: right;
-  font-family: 'Oswald', sans-serif;
-  font-size: 24px;
-  font-weight: 300;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
   line-height: 1.2;
   color: #2f2f2f;
 }
 
 .heroSecondImage {
   margin-top: 50px;
-  width: 250px;
-  height: 300px;
+  width: 180px;
+  height: 250px;
   object-fit: cover;
   display: block;
 }
@@ -118,7 +116,7 @@
 
 .bannerImage {
   width: 100%;
-  height: 550px;
+  height: 450px;
   object-fit: cover;
   display: block;
 }
@@ -151,7 +149,7 @@
 }
 
 .brandLogo {
-  height: 55px;
+  height: auto;
   width: auto;
   max-width: 100%;
   display: block;
@@ -166,14 +164,13 @@
 .sectionTitle {
   margin: 0;
   text-align: center;
-  font-family: 'Oswald', sans-serif;
-  font-size: 40px;
-  font-weight: 400;
-  line-height: 1;
+  font-family: var(--font-family);
+  font-size: var(--font-size-large);
+  line-height: 1.2;
 }
 
 .productsGrid {
-  margin-top: 80px;
+  margin-top: 70px;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;

@@ -30,11 +30,11 @@ h2, .h2 {
   letter-spacing: 1px;
 }
 
-/* Для кнопок можно использовать класс .btn */
+/* Для кнопок */
 .btn {
   font-family: var(--font-family);
   font-size: var(--font-size-small);
-  font-weight: 200;
+  font-weight: 180;
   text-transform: uppercase;
   padding: 10px 20px;
   border: none;
