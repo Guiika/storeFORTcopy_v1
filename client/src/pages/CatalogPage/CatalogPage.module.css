@@ -1,0 +1,212 @@
+.catalogPage {
+  width: 100%;
+}
+
+.banner {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  display: block;
+}
+
+.content {
+  padding: 50px;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 40px;
+  box-sizing: border-box;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.filterTitle {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+.filterList {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.checkItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.checkItem input {
+  display: none;
+}
+
+.checkSquare {
+  width: 16px;
+  height: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  position: relative;
+}
+
+.checkItem input:checked + .checkSquare::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 8px;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.colorDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.buttonText {
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  line-height: 1.2;
+}
+
+.products {
+  min-width: 0;
+  position: relative;
+}
+
+.sortRow {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.sortButton {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+}
+
+.sortIcon {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+}
+
+.sortDropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 3;
+}
+
+.sortOption {
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  padding: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  line-height: 1.2;
+}
+
+.grid {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(250px, 1fr));
+  column-gap: 40px;
+  row-gap: 70px;
+}
+
+.productCard {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.productImage {
+  width: 100%;
+  height: 400px;
+  background: #c7b1ec;
+  position: relative;
+}
+
+.productImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.productMeta {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.productMeta p {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  line-height: 1.2;
+}
+
+.emptyText {
+  margin-top: 20px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+}
+
+.iconStack {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.iconButton {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.actionIcon {
+  height: 30px;
+  width: auto;
+  display: block;
+}
