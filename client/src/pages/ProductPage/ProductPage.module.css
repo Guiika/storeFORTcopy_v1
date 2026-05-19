@@ -1,0 +1,219 @@
+.page {
+  padding-top: 40px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.loadingText {
+  padding: 100px 100px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}
+
+/* ── Product block ── */
+.productBlock {
+  display: flex;
+  align-items: center;
+}
+
+/* ── Gallery column ── */
+.galleryCol {
+  padding-left: 100px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+}
+
+.thumbnails {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  z-index: 2;
+  margin-top: -30px; /* overlap top of main image */
+  margin-right: 0;
+  max-height: 810px;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.thumbnails::-webkit-scrollbar {
+  display: none;
+}
+
+.thumbBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+  opacity: 0.6;
+  transition: opacity 0.15s;
+}
+
+.thumbBtn:hover,
+.thumbActive {
+  opacity: 1;
+}
+
+.thumb {
+  width: 120px;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+
+.mainImageWrap {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+.mainImage {
+  width: 600px;
+  height: 800px;
+  object-fit: cover;
+  display: block;
+}
+
+.mainImagePlaceholder {
+  width: 600px;
+  height: 800px;
+  background: #D6C0FF;
+}
+
+/* ── Info column ── */
+.infoCol {
+  flex: 1;
+  min-width: 0;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.brand,
+.title {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-large);
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.price {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: 100;
+}
+
+.sizesLabel {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* ── Sizes ── */
+.sizes {
+  display: flex;
+  align-items: center;
+  gap: 70px;
+}
+
+.sizeBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  color: black;
+  opacity: 1;
+  text-transform: uppercase;
+}
+
+.sizeBtnUnavailable {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.sizeBtnSelected {
+  text-decoration: underline;
+}
+
+/* ── Add row ── */
+.addRow {
+  display: flex;
+  align-items: center;
+  gap: 70px;
+}
+
+.addToCartBtn {
+  flex: 1;
+  height: 40px;
+  padding: 0;
+  background: #a48de2;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}
+
+.wishlistBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  line-height: 0;
+  flex-shrink: 0;
+}
+
+.likeIcon {
+  height: 20px;
+  width: auto;
+  display: block;
+}
+
+/* ── Detail rows ── */
+.detailLabel,
+.detailValue {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* ── Error toast ── */
+.errorToast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  padding: 16px 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+  z-index: 9999;
+}
+
+.errorIcon {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+}
+
+.errorLine {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}

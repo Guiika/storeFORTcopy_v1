@@ -1,11 +1,14 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import Footer from '../../components/layout/Footer';
 import { productsService } from '../../services/productsService';
 import { useAuth } from '../../store/AuthContext';
-import { useCart } from '../../store/CartContext';
 import { useWishlist } from '../../store/WishlistContext';
 import styles from './CatalogPage.module.css';
+
+import bannerCatalog from '../../assets/posters/banner_catalog.png';
+import downIcon from '../../assets/vector/down.svg';
+import { ReactComponent as LikeIcon } from '../../assets/vector/like.svg';
 
 const SIZES = ['XS', 'S', 'M', 'L', 'XL'];
 const DEFAULT_COLOR_MAP = { 'чёрный': '#000000', black: '#000000', 'белый': '#FFFFFF', white: '#FFFFFF', 'красный': '#FF0000', red: '#FF0000', 'синий': '#0000FF', blue: '#0000FF', 'зелёный': '#00FF00', green: '#00FF00' };
@@ -21,8 +24,9 @@ const toNumber = (value) => Number(String(value).replace(/[^\d.-]/g, '')) || 0;
 
 const CatalogPage = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const categoryId = searchParams.get('categoryId');
   const { user } = useAuth();
-  const { cartItems, addToCart, removeFromCart } = useCart();
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
 
   const [products, setProducts] = useState([]);
@@ -38,7 +42,12 @@ const CatalogPage = () => {
     (async () => {
       try {
         setLoading(true);
-        const response = await productsService.getProducts();
+        setSelectedBrands([]);
+        setSelectedSizes([]);
+        setSelectedColors([]);
+        const response = categoryId
+          ? await productsService.getCategoryPage(categoryId)
+          : await productsService.getProducts();
         if (active) setProducts(normalizeProducts(response?.data));
       } catch (error) {
         console.error('Failed to load catalog products', error);
@@ -48,7 +57,7 @@ const CatalogPage = () => {
       }
     })();
     return () => { active = false; };
-  }, []);
+  }, [categoryId]);
 
   const filterData = useMemo(() => ({
     brands: [...new Set(products.map((p) => p.brand).filter(Boolean))],
@@ -71,12 +80,11 @@ const CatalogPage = () => {
     return list;
   }, [products, selectedBrands, selectedSizes, selectedColors, sortBy]);
 
-  const cartHasProduct = (productId) => cartItems.some((item) => item.product_id === productId || item.id === productId);
   const activeSort = SORT_OPTIONS.find((o) => o.key === sortBy) || SORT_OPTIONS[0];
 
   return (
     <div className={styles.catalogPage}>
-      <img src="../../../assets/posters/banner_catalog.png" alt="Каталог баннер" className={styles.banner} />
+      <img src={bannerCatalog} alt="Каталог баннер" className={styles.banner} />
 
       <section className={styles.content}>
         <aside className={styles.filters}>{/* same filters */}
@@ -89,7 +97,7 @@ const CatalogPage = () => {
           <div className={styles.sortRow}>
             <button type="button" className={styles.sortButton} onClick={() => setSortOpen((v) => !v)}>
               <span className={styles.buttonText}>{activeSort.label}</span>
-              <img src="/assets/vector/down.svg" alt="Открыть сортировку" className={styles.sortIcon} />
+              <img src={downIcon} alt="Открыть сортировку" className={styles.sortIcon} />
             </button>
             {sortOpen && <div className={styles.sortDropdown}>{SORT_OPTIONS.map((option) => <button key={option.key} type="button" className={styles.sortOption} onClick={() => { setSortBy(option.key); setSortOpen(false); }}>{option.label}</button>)}</div>}
           </div>
@@ -98,25 +106,22 @@ const CatalogPage = () => {
             <div className={styles.grid}>
               {filteredProducts.map((product) => {
                 const inWishlist = user ? isInWishlist(product.id) : false;
-                const inCart = user ? cartHasProduct(product.id) : false;
                 return (
                   <button key={product.id} type="button" className={styles.productCard} onClick={() => navigate(`/product/${product.id}`)}>
                     <div className={styles.productImage}>
-                      <img src={product.main_image?.image_url || '/assets/posters/banner_catalog.png'} alt={product.name} />
+                      {product.main_image?.image_url && <img src={product.main_image.image_url} alt={product.name} />}
                       <div className={styles.iconStack}>
                         <button
                           type="button"
                           className={styles.iconButton}
                           onClick={async (e) => { e.stopPropagation(); if (!user) return; if (inWishlist) await removeFromWishlist(product.id); else await addToWishlist(product.id); }}
                         >
-                          <img src={inWishlist ? '/assets/vector/like_filled.svg' : '/assets/vector/like.svg'} alt="Избранное" className={styles.actionIcon} />
-                        </button>
-                        <button
-                          type="button"
-                          className={styles.iconButton}
-                          onClick={async (e) => { e.stopPropagation(); if (!user) return; if (inCart) await removeFromCart(product.id); else await addToCart(product.id, 1); }}
-                        >
-                          <img src={inCart ? '/assets/vector/cart.svg' : '/assets/vector/cart_null.svg'} alt="Корзина" className={styles.actionIcon} />
+                          <LikeIcon
+                            fill={inWishlist ? '#ffffff' : 'none'}
+                            stroke="#ffffff"
+                            strokeWidth="1.5"
+                            className={styles.actionIcon}
+                          />
                         </button>
                       </div>
                     </div>

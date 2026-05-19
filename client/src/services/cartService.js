@@ -2,7 +2,7 @@ import apiClient from './api/client';
 
 export const cartService = {
   getCart: () => apiClient.get('/cart'),
-  addToCart: (productId, quantity = 1) => apiClient.post(`/cart/${productId}`, { quantity }),
+  addToCart: (productId, quantity = 1, size = null) => apiClient.post(`/cart/${productId}`, { quantity, size }),
   updateQuantity: (productId, quantity) => apiClient.put(`/cart/${productId}`, { quantity }),
   removeItem: (productId) => apiClient.delete(`/cart/${productId}`),
   clearCart: () => apiClient.delete('/cart/clear'),

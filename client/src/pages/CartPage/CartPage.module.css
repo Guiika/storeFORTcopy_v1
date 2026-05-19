@@ -1,0 +1,207 @@
+.page {
+  min-height: 100vh;
+}
+
+.inner {
+  padding: 100px 50px 0px;
+  display: flex;
+  gap: 70px;
+  align-items: flex-start;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.loadingText {
+  margin-top: 70px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}
+
+/* ── Empty state ── */
+.emptyBlock {
+  margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.emptyText {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.catalogBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  color: #7B62C6;
+}
+
+.mainContent {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── Item list ── */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+}
+
+/* ── Single row ── */
+.row {
+  display: flex;
+  align-items: stretch;
+  gap: 70px;
+}
+
+/* ── Info column ── */
+.infoCol {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.textMuted {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  opacity: 0.5;
+}
+
+.text {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}
+
+/* ── Bottom row: counter + price ── */
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.arrowBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  line-height: 0;
+  display: flex;
+  align-items: center;
+}
+
+.arrowLeft {
+  width: 14px;
+  height: auto;
+  transform: rotate(90deg);
+  display: block;
+}
+
+.arrowRight {
+  width: 14px;
+  height: auto;
+  transform: rotate(-90deg);
+  display: block;
+}
+
+/* ── Image ── */
+.imageWrap {
+  flex-shrink: 0;
+  width: 180px;
+  height: 240px;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.imagePlaceholder {
+  width: 100%;
+  height: 100%;
+  background: #D6C0FF;
+}
+
+/* ── Checkout button ── */
+.checkoutWrap {
+  margin-top: 200px;
+  display: flex;
+  justify-content: center;
+}
+
+.checkoutBtn {
+  width: 400px;
+  height: 40px;
+  padding: 0;
+  background: #a48de2;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}
+
+/* ── Error toast ── */
+.errorToast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  padding: 16px 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+  z-index: 9999;
+}
+
+.errorIcon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.errorLine {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}

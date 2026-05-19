@@ -14,6 +14,7 @@ router.post('/cleanup', AdminController.cleanupOldData);
 // ============= УПРАВЛЕНИЕ ПОЛЬЗОВАТЕЛЯМИ =============
 router.get('/users', AdminController.getAllUsers);
 router.get('/users/:id', AdminController.getUserById);
+router.put('/users/:id', AdminController.updateUserDetails);
 router.put('/users/:id/role', AdminController.updateUserRole);
 router.put('/users/:id/status', AdminController.toggleUserStatus);
 

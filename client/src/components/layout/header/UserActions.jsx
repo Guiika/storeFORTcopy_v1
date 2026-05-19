@@ -14,8 +14,7 @@ const UserActions = ({ user, cartCount, wishlistCount, onWishlistClick, onProfil
     )}
 
     <button type="button" className={styles.iconButton} onClick={onWishlistClick} aria-label="Избранное">
-      <HeartIcon />
-      {wishlistCount > 0 && <span className={styles.badge}>{wishlistCount}</span>}
+      <HeartIcon filled={!!user && wishlistCount > 0} />
     </button>
 
     <button type="button" className={styles.iconButton} onClick={onProfileClick} aria-label="Профиль">
@@ -23,8 +22,7 @@ const UserActions = ({ user, cartCount, wishlistCount, onWishlistClick, onProfil
     </button>
 
     <button type="button" className={styles.iconButton} onClick={onCartClick} aria-label="Корзина">
-      <CartIcon filled={cartCount > 0} />
-      {cartCount > 0 && <span className={styles.badge}>{cartCount}</span>}
+      <CartIcon filled={!!user && cartCount > 0} />
     </button>
   </div>
 );

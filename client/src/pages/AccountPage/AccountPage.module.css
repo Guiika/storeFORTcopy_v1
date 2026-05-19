@@ -1,0 +1,157 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.loadingText {
+  padding: 150px 50px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}
+
+.inner {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 70px;
+  padding: 100px 50px 100px;
+}
+
+/* ── Column 1: nav ── */
+.nav {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.navItem {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  color: black;
+}
+
+.navItemActive {
+  text-decoration: underline;
+}
+
+/* ── Form area (cols 2+3 + save) ── */
+.formArea {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.formCols {
+  display: flex;
+  gap: 70px;
+  align-items: flex-start;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  flex-shrink: 0;
+}
+
+.colTitle {
+  margin: 0 0 30px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: 100;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.field {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid black;
+  background: transparent;
+  outline: none;
+  padding-bottom: 5px;
+  padding-left: 0;
+  box-sizing: border-box;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  color: black;
+}
+
+.field::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.field[readonly] {
+  color: rgba(0, 0, 0, 0.5);
+  cursor: default;
+}
+
+/* ── Save button ── */
+.saveRow {
+  margin-top: 70px;
+}
+
+.saveBtn {
+  width: 300px;
+  height: 40px;
+  padding: 0;
+  background: #a48de2;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}
+
+.saveBtn:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+/* ── Toast ── */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  padding: 16px 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+  z-index: 9999;
+}
+
+.toastIcon {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+}
+
+.toastText {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}
+
+.toastSuccess .toastText {
+  color: #7B62C6;
+}

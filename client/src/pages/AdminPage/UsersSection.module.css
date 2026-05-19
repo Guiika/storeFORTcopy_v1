@@ -1,0 +1,241 @@
+.loadingText,
+.totalText {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}
+
+.totalText {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* ── User list ── */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+  margin-top: 70px;
+}
+
+.userBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── Header row ── */
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.toggleBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  flex: 1;
+  min-width: 0;
+}
+
+.chevron {
+  width: 14px;
+  height: auto;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.email {
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.blockedLabel {
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  color: rgba(0, 0, 0, 0.4);
+  white-space: nowrap;
+}
+
+/* ── Actions ── */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex-shrink: 0;
+}
+
+.roleToggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.roleBtn {
+  background: none;
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  color: black;
+}
+
+.roleBtnActive {
+  background: rgba(123, 98, 198, 0.3);
+  color: #7B62C6;
+}
+
+.actionBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  color: #7B62C6;
+}
+
+/* ── Inline confirm ── */
+.confirmRow {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 16px;
+  padding-left: 24px;
+}
+
+.confirmText {
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}
+
+.confirmYes {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  color: #7B62C6;
+}
+
+.confirmNo {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* ── Details accordion ── */
+.details {
+  margin-top: 30px;
+  padding-left: 30px;
+}
+
+.detailsGrid {
+  display: flex;
+  gap: 70px;
+}
+
+.detailLabels,
+.detailValues {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.detailLabel {
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.detailValue {
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}
+
+/* ── Edit mode ── */
+.editInput {
+  border: none;
+  border-bottom: 1px solid black;
+  background: transparent;
+  outline: none;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  padding-bottom: 2px;
+  min-width: 160px;
+}
+
+.editActions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  padding-left: 0;
+}
+
+.editConfirm,
+.editCancel {
+  background: none;
+  border: none;
+  padding: 0 4px;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}
+
+/* ── Error toast ── */
+.errorToast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  padding: 16px 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+  z-index: 9999;
+}
+
+.errorIcon {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+}
+
+.errorLine {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}

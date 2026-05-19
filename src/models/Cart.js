@@ -24,8 +24,14 @@ class Cart {
     }
 
     // Добавление товара в корзину
-    static async addItem(userId, productId, quantity = 1) {
+    static async addItem(userId, productId, quantity = 1, size = null) {
         try {
+            // Добавляем колонку size если её нет
+            const tableInfo = await db.all('PRAGMA table_info(cart_items)');
+            if (!tableInfo.some(col => col.name === 'size')) {
+                await db.run('ALTER TABLE cart_items ADD COLUMN size TEXT');
+            }
+
             // Получаем или создаем корзину
             const cart = await this.getOrCreateCart(userId);
             
@@ -65,8 +71,8 @@ class Cart {
             } else {
                 // Добавляем новый товар
                 const result = await db.run(
-                    'INSERT INTO cart_items (cart_id, product_id, quantity) VALUES (?, ?, ?)',
-                    [cart.id, productId, quantity]
+                    'INSERT INTO cart_items (cart_id, product_id, quantity, size) VALUES (?, ?, ?, ?)',
+                    [cart.id, productId, quantity, size]
                 );
                 item = await db.get('SELECT * FROM cart_items WHERE id = ?', [result.id]);
             }
@@ -153,12 +159,11 @@ class Cart {
                        p.sku,
                        p.stock_quantity,
                        p.color,
-                       p.size,
                        p.brand,
                        c.name as category_name,
                        (SELECT image_url FROM product_images WHERE product_id = p.id AND is_main = 1 LIMIT 1) as main_image
                 FROM cart_items ci
-                JOIN products p ON ci.product_id = p.id
+                JOIN products p ON ci.product_id = p.id AND p.is_active = 1
                 LEFT JOIN categories c ON p.category_id = c.id
                 WHERE ci.cart_id = ?
                 ORDER BY ci.added_at DESC

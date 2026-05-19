@@ -21,7 +21,7 @@ const NavCategories = ({
         <button
           type="button"
           className={styles.navButton}
-          onClick={() => onCategoryClick(category.name)}
+          onClick={() => onCategoryClick(category.id)}
         >
           {category.name}
         </button>

@@ -8,8 +8,8 @@ import ppLogo from '../../../assets/vector/pp.svg';
 
 const brands = [
   { key: 'PINKO', logo: pinkoLogo },
-  { key: 'MaxMara', logo: maxMaraLogo },
   { key: 'PATRIZIA PEPE', logo: pepeLogo },
+  { key: 'MaxMara', logo: maxMaraLogo },
   { key: 'PHILIPP PLEIN', logo: ppLogo },
 ];
 

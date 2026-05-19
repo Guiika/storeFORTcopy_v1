@@ -36,7 +36,7 @@ export const CartProvider = ({ children }) => {
     fetchCart();
   }, [fetchCart]);
 
-  const addToCart = async (productId, quantity = 1) => {
+  const addToCart = async (productId, quantity = 1, size = null) => {
     if (!user) {
       const guestCart = JSON.parse(localStorage.getItem('guestCart') || '[]');
       const existing = guestCart.find(item => item.product_id === productId);
@@ -50,7 +50,7 @@ export const CartProvider = ({ children }) => {
       setCartItems(guestCart);
       return;
     }
-    await cartService.addToCart(productId, quantity);
+    await cartService.addToCart(productId, quantity, size);
     await fetchCart();
   };
 

@@ -13,7 +13,7 @@ class CatalogController {
             in_stock_only: query.in_stock_only === 'true',
             featured_only: query.featured_only === 'true',
             search: query.search || '',
-            limit: query.limit ? parseInt(query.limit) : 20,
+            limit: query.limit ? parseInt(query.limit) : 1000,
             offset: query.offset ? parseInt(query.offset) : 0,
             sort_by: query.sort_by || 'created_at',
             sort_order: query.sort_order || 'DESC'
@@ -308,7 +308,7 @@ class CatalogController {
     // Все товары (расширенный поиск)
     static async getAllProducts(req, res) {
         try {
-            const filters = this.parseFilters(req.query);
+            const filters = CatalogController.parseFilters(req.query);
             
             // Если нет конкретной категории, ищем во всех активных товарах
             const products = await Product.findAll(filters);

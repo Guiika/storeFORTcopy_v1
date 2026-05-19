@@ -58,12 +58,8 @@ const Header = () => {
   );
 
   const handleLogoClick = () => navigate('/');
-  const handleCategoryClick = (categoryName) => navigate(`/catalog?category=${encodeURIComponent(categoryName)}`);
-  const handleSubcategoryClick = (categoryName, subcategoryName) => {
-    navigate(
-      `/catalog?category=${encodeURIComponent(categoryName)}&subcategory=${encodeURIComponent(subcategoryName)}`
-    );
-  };
+  const handleCategoryClick = (categoryId) => navigate(`/catalog?categoryId=${categoryId}`);
+  const handleSubcategoryClick = (categoryId) => navigate(`/catalog?categoryId=${categoryId}`);
 
   return (
     <header className={headerClassName}>
@@ -88,8 +84,8 @@ const Header = () => {
         user={user}
         cartCount={cartCount}
         wishlistCount={wishlistCount}
-        onWishlistClick={() => navigate('/wishlist')}
-        onProfileClick={() => navigate('/profile')}
+        onWishlistClick={() => navigate('/favorites')}
+        onProfileClick={() => navigate(user ? '/profile' : '/login')}
         onCartClick={() => navigate('/cart')}
         onAdminClick={() => navigate('/admin')}
       />

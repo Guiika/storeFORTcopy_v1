@@ -63,7 +63,6 @@
   background: transparent;
   color: inherit;
   font-size: var(--font-size-small);
-  line-height: 1.2;  
   font-weight: 10;
   font-family: var(--font-family);
   text-transform: lowercase;
@@ -118,7 +117,6 @@
   font-size: var(--font-size-small);
   font-family: var(--font-family);
   font-weight: 100;
-  line-height: 1.2;
   cursor: pointer;
   padding: 0;
   text-align: left;

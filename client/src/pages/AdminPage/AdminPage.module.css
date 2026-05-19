@@ -1,0 +1,141 @@
+.page {
+  padding: 100px 50px 200px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.layout {
+  display: flex;
+  gap: 70px;
+  align-items: flex-start;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding-top: 10px;
+}
+
+.navItem {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  color: var(--color-black);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.navItemActive {
+  text-decoration: underline;
+}
+
+/* ── Content ── */
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.loadingText {
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}
+
+/* ── Section title ── */
+.sectionTitle {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: 100;
+}
+
+/* ── Stats table ── */
+.statsTable {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.statRow {
+  display: flex;
+  gap: 30px;
+  align-items: baseline;
+}
+
+.statLabel {
+  min-width: 260px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}
+
+.statValue {
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}
+
+/* ── Cards grid ── */
+.cardsGrid {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* ── Product card ── */
+.card {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.cardImage {
+  width: 180px;
+  height: 240px;
+  background: #a48de2;
+  overflow: hidden;
+}
+
+.cardImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cardMeta {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.cardMeta p {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}
+
+/* ── Export button ── */
+.exportButton {
+  display: block;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #a48de2;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}

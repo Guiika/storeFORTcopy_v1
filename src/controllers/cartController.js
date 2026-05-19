@@ -25,15 +25,15 @@ class CartController {
         try {
             const userId = req.userId;
             const { productId } = req.params;
-            const { quantity = 1 } = req.body;
-            
+            const { quantity = 1, size = null } = req.body;
+
             // Валидация количества
             if (quantity < 1) {
                 return res.status(400).json({ error: 'Quantity must be at least 1' });
             }
-            
+
             // Добавляем в корзину
-            const item = await Cart.addItem(userId, productId, quantity);
+            const item = await Cart.addItem(userId, productId, quantity, size);
             
             // Получаем обновленную корзину
             const cart = await Cart.getCart(userId);

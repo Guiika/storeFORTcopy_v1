@@ -1,17 +1,11 @@
 import React from 'react';
+import { ReactComponent as CartSvg } from '../vector/cart.svg';
+import { ReactComponent as CartNullSvg } from '../vector/cart_null.svg';
 
-import { ReactComponent as EmptyCartSvg } from '../vector/cart_null.svg';
-import { ReactComponent as FilledCartSvg } from '../vector/cart.svg';
-
-const CartIcon = ({ filled = false }) => {
-  const Icon = filled ? FilledCartSvg : EmptyCartSvg;
-
-  return (
-    <Icon
-      fill="currentColor"
-      stroke="none"
-    />
-  );
-};
+const CartIcon = ({ filled = false }) => (
+  filled
+    ? <CartSvg fill="currentColor" stroke="none" />
+    : <CartNullSvg fill="none" stroke="currentColor" strokeWidth="1.5" />
+);
 
 export default CartIcon;

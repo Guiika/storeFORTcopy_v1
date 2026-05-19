@@ -1,0 +1,140 @@
+.loadingText {
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}
+
+.totalText {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.createButton {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #7B62C6;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid black;
+  margin: 0;
+}
+
+/* ── Wrapper ── */
+.wrapper {
+  max-width: 50%;
+}
+
+/* ── Category block ── */
+.categoryBlock {
+  margin-bottom: 70px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.categoryName {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: 100;
+}
+
+/* ── Actions ── */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex-shrink: 0;
+}
+
+.iconBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  line-height: 0;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  width: 15px;
+  height: 15px;
+  display: block;
+}
+
+.deleteIcon {
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  color: black;
+}
+
+/* ── Subcategories ── */
+.subcategories {
+  padding-left: 70px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.subName {
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}
+
+.addSubRow {
+  display: flex;
+  align-items: center;
+}
+
+.iconAdd {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+/* ── Inline edit form ── */
+.inlineForm {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.inlineInput {
+  border: none;
+  border-bottom: 1px solid black;
+  background: transparent;
+  outline: none;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  padding-bottom: 2px;
+  min-width: 200px;
+}
+
+.inlineConfirm,
+.inlineCancel {
+  background: none;
+  border: none;
+  padding: 0 4px;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  color: black;
+}

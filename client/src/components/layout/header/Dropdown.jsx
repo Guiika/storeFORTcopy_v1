@@ -18,7 +18,7 @@ const Dropdown = ({ items, categoryName, onSubcategoryClick, onMouseEnter, onMou
             <button
               type="button"
               className={styles.dropdownButton}
-              onClick={() => onSubcategoryClick(categoryName, sub.name)}
+              onClick={() => onSubcategoryClick(sub.id)}
             >
               {sub.name}
             </button>

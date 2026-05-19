@@ -223,13 +223,20 @@ class Product {
             `UPDATE products SET ${updates.join(', ')} WHERE id = ?`,
             values
         );
-        
+
+        if (updateData.is_active === 0 || updateData.is_active === false) {
+            await db.run('DELETE FROM cart_items WHERE product_id = ?', [id]);
+            await db.run('DELETE FROM wishlist WHERE product_id = ?', [id]);
+        }
+
         return this.findById(id);
     }
 
     // Удаление товара (мягкое удаление)
     static async delete(id) {
         await db.run('UPDATE products SET is_active = 0 WHERE id = ?', [id]);
+        await db.run('DELETE FROM cart_items WHERE product_id = ?', [id]);
+        await db.run('DELETE FROM wishlist WHERE product_id = ?', [id]);
         return true;
     }
 

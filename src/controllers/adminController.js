@@ -14,7 +14,7 @@ class AdminController {
             const offset = (page - 1) * limit;
             const search = req.query.search || '';
             
-            let query = 'SELECT id, email, first_name, last_name, role, phone, created_at FROM users';
+            let query = 'SELECT id, email, first_name, last_name, role, phone, created_at, IFNULL(is_active, 1) as is_active FROM users';
             const params = [];
             
             if (search) {
@@ -90,6 +90,20 @@ class AdminController {
         } catch (error) {
             console.error('Get user by id error:', error);
             res.status(500).json({ error: 'Failed to get user' });
+        }
+    }
+
+    // Обновление данных пользователя (имя, фамилия, телефон)
+    static async updateUserDetails(req, res) {
+        try {
+            const { id } = req.params;
+            const { first_name, last_name, phone } = req.body;
+            const updated = await User.update(id, { first_name, last_name, phone });
+            if (!updated) return res.status(404).json({ error: 'User not found' });
+            res.json({ message: 'User updated successfully', user: updated });
+        } catch (error) {
+            console.error('Update user details error:', error);
+            res.status(500).json({ error: 'Failed to update user' });
         }
     }
 
@@ -389,7 +403,7 @@ class AdminController {
             
             // Получаем популярные товары (по просмотрам)
             const popularProducts = await db.all(`
-                SELECT p.id, p.name, p.price, p.views,
+                SELECT p.id, p.name, p.brand, p.price, p.views,
                        (SELECT image_url FROM product_images WHERE product_id = p.id AND is_main = 1 LIMIT 1) as main_image
                 FROM products p
                 WHERE p.is_active = 1
@@ -399,11 +413,12 @@ class AdminController {
             
             // Товары с низким запасом
             const lowStockProducts = await db.all(`
-                SELECT id, name, sku, stock_quantity
-                FROM products
-                WHERE is_active = 1 AND stock_quantity < 10
-                ORDER BY stock_quantity ASC
-                LIMIT 10
+                SELECT p.id, p.name, p.brand, p.price, p.stock_quantity,
+                       (SELECT image_url FROM product_images WHERE product_id = p.id AND is_main = 1 LIMIT 1) as main_image
+                FROM products p
+                WHERE p.is_active = 1 AND p.stock_quantity < 10
+                ORDER BY p.stock_quantity ASC
+                LIMIT 5
             `);
             
             res.json({

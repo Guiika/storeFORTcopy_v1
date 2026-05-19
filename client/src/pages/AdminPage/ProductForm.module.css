@@ -1,0 +1,211 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 700px;
+}
+
+/* ── Text field row ── */
+.textRow {
+  display: flex;
+  align-items: flex-end;
+  border-bottom: 1px solid black;
+  padding-bottom: 5px;
+  width: 100%;
+}
+
+.fieldLabel {
+  flex-shrink: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  white-space: nowrap;
+}
+
+.textInput {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  padding-left: 20px;
+  padding-bottom: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  color: black;
+}
+
+.textInput::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* ── Dropdown row ── */
+.dropdownRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.dropdownLabel {
+  flex-shrink: 0;
+  padding-top: 6px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}
+
+.dropdownWrap {
+  position: relative;
+  min-width: 220px;
+}
+
+.dropdownBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 12px;
+  background: #D6C0FF;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}
+
+.chevron {
+  width: 12px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.dropdownList {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+.dropdownOption {
+  display: block;
+  width: 100%;
+  text-align: right;
+  padding: 6px 12px;
+  border: none;
+  background: white;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}
+
+.dropdownOption:hover {
+  background: rgba(214, 192, 255, 0.3);
+}
+
+.dropdownOptionActive {
+  background: #D6C0FF !important;
+}
+
+/* ── Add new value row inside dropdown ── */
+.dropdownAddRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 6px 12px;
+  gap: 6px;
+}
+
+.addIconBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.addIconImg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.dropdownAddInput {
+  border: none;
+  border-bottom: 1px solid black;
+  background: transparent;
+  outline: none;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  width: 120px;
+  padding-bottom: 2px;
+}
+
+.dropdownAddConfirm {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  padding: 0 4px;
+}
+
+/* ── Validation errors ── */
+.textRowError {
+  border-bottom-color: red;
+}
+
+.dropdownError .dropdownBtn {
+  outline: 1px solid red;
+}
+
+/* ── Error toast ── */
+.errorToast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  padding: 16px 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+  z-index: 9999;
+}
+
+.errorIcon {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+}
+
+.errorLine {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}
+
+/* ── Save button ── */
+.saveButton {
+  display: block;
+  width: 100%;
+  height: 40px;
+  padding: 0;
+  background: #a48de2;
+  color: white;
+  border: none;
+  text-align: center;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  cursor: pointer;
+  margin-top: 70px;
+}
