@@ -252,33 +252,29 @@ const CheckoutPage = () => {
 
               {/* Order data */}
               <div className={styles.formBlock}>
-                <p className={styles.formTitle}>Данные заказа</p>
-
-                <div className={styles.fields}>
-                  {[
-                    { label: 'Фамилия',        value: lastName,   setter: setLastName   },
-                    { label: 'Имя',             value: firstName,  setter: setFirstName  },
-                    { label: 'Email',           value: email,      setter: setEmail      },
-                    { label: 'Номер телефона',  value: phone,      setter: setPhone      },
-                    { label: 'Город',           value: city,       setter: setCity       },
-                    { label: 'Улица',           value: street,     setter: setStreet     },
-                    { label: 'Дом / корпус',    value: house,      setter: setHouse      },
-                    { label: 'Квартира',        value: apartment,  setter: setApartment, optional: true },
-                    { label: 'Индекс',          value: zip,        setter: setZip        },
-                  ].map(({ label, value, setter, optional }) => (
-                    <div key={label} className={styles.fieldRow}>
-                      <span className={styles.fieldLabel}>
-                        {label}{optional ? '' : ':'}
-                        {optional && <span className={styles.optionalMark}> (необязательно):</span>}
-                      </span>
-                      <input
-                        className={styles.fieldInput}
-                        value={value}
-                        onChange={(e) => setter(e.target.value)}
-                        placeholder={label}
-                      />
+                <div className={styles.formCols}>
+                  {/* Column 1 — recipient */}
+                  <div className={styles.col}>
+                    <p className={styles.colTitle}>Данные получателя</p>
+                    <div className={styles.fields}>
+                      <input className={styles.field} placeholder="Фамилия" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+                      <input className={styles.field} placeholder="Имя" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+                      <input className={styles.field} placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                      <input className={styles.field} placeholder="Номер телефона" value={phone} onChange={(e) => setPhone(e.target.value)} />
                     </div>
-                  ))}
+                  </div>
+
+                  {/* Column 2 — delivery address */}
+                  <div className={styles.col}>
+                    <p className={styles.colTitle}>Адрес доставки</p>
+                    <div className={styles.fields}>
+                      <input className={styles.field} placeholder="Город" value={city} onChange={(e) => setCity(e.target.value)} />
+                      <input className={styles.field} placeholder="Улица" value={street} onChange={(e) => setStreet(e.target.value)} />
+                      <input className={styles.field} placeholder="Дом / корпус" value={house} onChange={(e) => setHouse(e.target.value)} />
+                      <input className={styles.field} placeholder="Квартира" value={apartment} onChange={(e) => setApartment(e.target.value)} />
+                      <input className={styles.field} placeholder="Индекс" value={zip} onChange={(e) => setZip(e.target.value)} />
+                    </div>
+                  </div>
                 </div>
               </div>
 
