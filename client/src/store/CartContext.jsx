@@ -54,10 +54,10 @@ export const CartProvider = ({ children }) => {
     await fetchCart();
   };
 
-  const updateQuantity = async (productId, quantity) => {
+  const updateQuantity = async (productId, quantity, size) => {
     if (!user) {
       const guestCart = JSON.parse(localStorage.getItem('guestCart') || '[]');
-      const index = guestCart.findIndex(item => item.product_id === productId);
+      const index = guestCart.findIndex(item => item.product_id === productId && (item.size || '') === (size || ''));
       if (index !== -1) {
         if (quantity <= 0) {
           guestCart.splice(index, 1);
@@ -70,20 +70,20 @@ export const CartProvider = ({ children }) => {
       }
       return;
     }
-    await cartService.updateQuantity(productId, quantity);
+    await cartService.updateQuantity(productId, quantity, size);
     await fetchCart();
   };
 
-  const removeFromCart = async (productId) => {
+  const removeFromCart = async (productId, size) => {
     if (!user) {
       const guestCart = JSON.parse(localStorage.getItem('guestCart') || '[]');
-      const newCart = guestCart.filter(item => item.product_id !== productId);
+      const newCart = guestCart.filter(item => !(item.product_id === productId && (item.size || '') === (size || '')));
       localStorage.setItem('guestCart', JSON.stringify(newCart));
       setCartCount(newCart.reduce((sum, item) => sum + item.quantity, 0));
       setCartItems(newCart);
       return;
     }
-    await cartService.removeItem(productId);
+    await cartService.removeItem(productId, size);
     await fetchCart();
   };
 

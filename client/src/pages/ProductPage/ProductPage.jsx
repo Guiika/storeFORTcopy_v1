@@ -167,8 +167,8 @@ const ProductPage = () => {
             <button type="button" className={styles.wishlistBtn} onClick={handleToggleWishlist}>
               <LikeIcon
                 className={styles.likeIcon}
-                fill={inWishlist ? '#a48de2' : 'none'}
-                stroke="#a48de2"
+                fill={inWishlist ? 'rgba(123, 98, 198, 0.3)' : 'none'}
+                stroke="rgba(123, 98, 198, 0.3)"
                 strokeWidth="1.5"
               />
             </button>

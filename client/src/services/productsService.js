@@ -19,4 +19,6 @@ export const productsService = {
   getProductImages: (id) => apiClient.get(`/products/${id}/images`),
   uploadProductImage: (id, formData) => apiClient.post(`/products/${id}/images`, formData, { headers: { 'Content-Type': 'multipart/form-data' } }),
   deleteProductImage: (imageId) => apiClient.delete(`/products/images/${imageId}`),
+  deleteProduct: (id) => apiClient.delete(`/products/${id}`),
+  getAdminProducts: (filters) => apiClient.get('/products', { params: filters }),
 };

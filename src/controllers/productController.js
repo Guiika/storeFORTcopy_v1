@@ -39,7 +39,8 @@ class ProductController {
                 limit: req.query.limit ? parseInt(req.query.limit) : 50,
                 offset: req.query.offset ? parseInt(req.query.offset) : 0,
                 sort_by: req.query.sort_by || 'created_at',
-                sort_order: req.query.sort_order || 'DESC'
+                sort_order: req.query.sort_order || 'DESC',
+                status: req.query.status, // 'active' | 'inactive' | 'all'
             };
             
             const products = await Product.findAll(filters);

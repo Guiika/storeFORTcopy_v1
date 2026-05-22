@@ -63,7 +63,7 @@
 .addCard {
   width: 300px;
   height: 400px;
-  background: #D6C0FF;
+  background: rgba(123, 98, 198, 0.7);
   border: none;
   cursor: pointer;
   display: flex;

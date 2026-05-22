@@ -33,7 +33,7 @@ const LoginPage = () => {
     <div className={styles.page}>
       <div className={styles.content}>
         <button type="button" className={styles.logoButton} onClick={() => navigate('/')}>
-          <FortLogo fill="#A391D7" className={styles.logo} />
+          <FortLogo fill="rgba(123, 98, 198, 0.7)" className={styles.logo} />
         </button>
 
         <div className={styles.inputWrapper} style={{ marginTop: '200px' }}>

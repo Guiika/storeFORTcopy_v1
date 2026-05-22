@@ -113,8 +113,8 @@ const FavoritesPage = () => {
                           onClick={(e) => handleRemoveWishlist(e, productId)}
                         >
                           <LikeIcon
-                            fill="#ffffff"
-                            stroke="#ffffff"
+                            fill="rgba(123, 98, 198, 0.3)"
+                            stroke="rgba(123, 98, 198, 0.3)"
                             className={styles.actionIcon}
                           />
                         </button>

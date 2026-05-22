@@ -7,4 +7,5 @@ export const adminService = {
   updateUser: (id, data) => apiClient.put(`/admin/users/${id}`, data),
   updateUserRole: (id, role) => apiClient.put(`/admin/users/${id}/role`, { role }),
   toggleUserStatus: (id, is_active) => apiClient.put(`/admin/users/${id}/status`, { is_active }),
+  bulkUpdatePrices: (products) => apiClient.post('/admin/products/bulk-update-prices', { products }),
 };

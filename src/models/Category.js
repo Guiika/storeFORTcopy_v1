@@ -57,7 +57,7 @@ class Category {
             query += ' WHERE c.is_active = 1';
         }
         
-        query += ' ORDER BY c.parent_id, c.name';
+        query += ' ORDER BY c.parent_id, c.id';
         
         const categories = await db.all(query);
         
@@ -87,8 +87,8 @@ class Category {
         const categories = await db.all(`
             SELECT id, name, parent_id 
             FROM categories 
-            WHERE is_active = 1 
-            ORDER BY name
+            WHERE is_active = 1
+            ORDER BY id
         `);
         return categories;
     }
@@ -135,27 +135,30 @@ class Category {
 
     // Удаление категории (мягкое удаление - деактивация)
     static async delete(id) {
-        // Проверяем, есть ли товары в этой категории
+        // Проверяем товары в самой категории
         const productsCount = await db.get(
-            'SELECT COUNT(*) as count FROM products WHERE category_id = ?',
+            'SELECT COUNT(*) as count FROM products WHERE category_id = ? AND is_active = 1',
             [id]
         );
-        
         if (productsCount.count > 0) {
-            throw new Error('Cannot delete category with products. Deactivate it instead.');
+            throw new Error('Нельзя удалить категорию с активными товарами');
         }
-        
-        // Проверяем, есть ли подкатегории
-        const subcategoriesCount = await db.get(
-            'SELECT COUNT(*) as count FROM categories WHERE parent_id = ? AND is_active = 1',
+
+        // Проверяем товары в подкатегориях
+        const subProductsCount = await db.get(
+            `SELECT COUNT(*) as count FROM products
+             WHERE category_id IN (SELECT id FROM categories WHERE parent_id = ?)
+               AND is_active = 1`,
             [id]
         );
-        
-        if (subcategoriesCount.count > 0) {
-            throw new Error('Cannot delete category with active subcategories');
+        if (subProductsCount.count > 0) {
+            throw new Error('Нельзя удалить категорию: в подкатегориях есть активные товары');
         }
-        
-        // Выполняем мягкое удаление
+
+        // Каскадно деактивируем подкатегории
+        await db.run('UPDATE categories SET is_active = 0 WHERE parent_id = ?', [id]);
+
+        // Деактивируем саму категорию
         await db.run('UPDATE categories SET is_active = 0 WHERE id = ?', [id]);
         return true;
     }
@@ -188,7 +191,7 @@ class Category {
             query += ' WHERE c.is_active = 1';
         }
         
-        query += ' ORDER BY c.parent_id, c.name';
+        query += ' ORDER BY c.parent_id, c.id';
         
         const categories = await db.all(query);
         
@@ -258,7 +261,7 @@ class Category {
                 FROM categories c
                 LEFT JOIN categories p ON c.parent_id = p.id
                 WHERE c.is_active = 1
-                ORDER BY c.parent_id, c.name
+                ORDER BY c.parent_id, c.id
             `);
             
             return categories;

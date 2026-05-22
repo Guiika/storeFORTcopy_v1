@@ -26,57 +26,43 @@ class Cart {
     // Добавление товара в корзину
     static async addItem(userId, productId, quantity = 1, size = null) {
         try {
-            // Добавляем колонку size если её нет
-            const tableInfo = await db.all('PRAGMA table_info(cart_items)');
-            if (!tableInfo.some(col => col.name === 'size')) {
-                await db.run('ALTER TABLE cart_items ADD COLUMN size TEXT');
-            }
-
-            // Получаем или создаем корзину
             const cart = await this.getOrCreateCart(userId);
-            
-            // Проверяем наличие товара
+            const normalizedSize = size || '';
+
             const product = await db.get(
                 'SELECT id, name, price, stock_quantity FROM products WHERE id = ? AND is_active = 1',
                 [productId]
             );
-            
-            if (!product) {
-                throw new Error('Product not found or inactive');
-            }
-            
+            if (!product) throw new Error('Product not found or inactive');
             if (product.stock_quantity < quantity) {
                 throw new Error(`Only ${product.stock_quantity} items available in stock`);
             }
-            
-            // Проверяем, есть ли уже такой товар в корзине
+
+            // Ищем существующую позицию с тем же товаром И тем же размером
             const existingItem = await db.get(
-                'SELECT * FROM cart_items WHERE cart_id = ? AND product_id = ?',
-                [cart.id, productId]
+                'SELECT * FROM cart_items WHERE cart_id = ? AND product_id = ? AND size = ?',
+                [cart.id, productId, normalizedSize]
             );
-            
+
             let item;
             if (existingItem) {
-                // Обновляем количество
                 const newQuantity = existingItem.quantity + quantity;
                 if (newQuantity > product.stock_quantity) {
                     throw new Error(`Cannot add more than ${product.stock_quantity} items`);
                 }
-                
                 await db.run(
                     'UPDATE cart_items SET quantity = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
                     [newQuantity, existingItem.id]
                 );
                 item = await db.get('SELECT * FROM cart_items WHERE id = ?', [existingItem.id]);
             } else {
-                // Добавляем новый товар
                 const result = await db.run(
                     'INSERT INTO cart_items (cart_id, product_id, quantity, size) VALUES (?, ?, ?, ?)',
-                    [cart.id, productId, quantity, size]
+                    [cart.id, productId, quantity, normalizedSize]
                 );
                 item = await db.get('SELECT * FROM cart_items WHERE id = ?', [result.id]);
             }
-            
+
             return item;
         } catch (error) {
             console.error('Error in addItem:', error);
@@ -85,41 +71,30 @@ class Cart {
     }
 
     // Обновление количества товара
-    static async updateItemQuantity(userId, productId, quantity) {
+    static async updateItemQuantity(userId, productId, quantity, size = null) {
         try {
-            if (quantity < 1) {
-                throw new Error('Quantity must be at least 1');
-            }
-            
+            if (quantity < 1) throw new Error('Quantity must be at least 1');
             const cart = await this.getOrCreateCart(userId);
-            
-            // Проверяем наличие товара
+            const normalizedSize = size || '';
+
             const product = await db.get(
                 'SELECT stock_quantity FROM products WHERE id = ? AND is_active = 1',
                 [productId]
             );
-            
-            if (!product) {
-                throw new Error('Product not found');
-            }
-            
+            if (!product) throw new Error('Product not found');
             if (product.stock_quantity < quantity) {
                 throw new Error(`Only ${product.stock_quantity} items available in stock`);
             }
-            
-            // Обновляем количество
+
             const result = await db.run(
-                'UPDATE cart_items SET quantity = ?, updated_at = CURRENT_TIMESTAMP WHERE cart_id = ? AND product_id = ?',
-                [quantity, cart.id, productId]
+                'UPDATE cart_items SET quantity = ?, updated_at = CURRENT_TIMESTAMP WHERE cart_id = ? AND product_id = ? AND size = ?',
+                [quantity, cart.id, productId, normalizedSize]
             );
-            
-            if (result.changes === 0) {
-                throw new Error('Item not found in cart');
-            }
-            
+            if (result.changes === 0) throw new Error('Item not found in cart');
+
             return await db.get(
-                'SELECT * FROM cart_items WHERE cart_id = ? AND product_id = ?',
-                [cart.id, productId]
+                'SELECT * FROM cart_items WHERE cart_id = ? AND product_id = ? AND size = ?',
+                [cart.id, productId, normalizedSize]
             );
         } catch (error) {
             console.error('Error in updateItemQuantity:', error);
@@ -128,15 +103,16 @@ class Cart {
     }
 
     // Удаление товара из корзины
-    static async removeItem(userId, productId) {
+    static async removeItem(userId, productId, size = null) {
         try {
             const cart = await this.getOrCreateCart(userId);
-            
+            const normalizedSize = size || '';
+
             const result = await db.run(
-                'DELETE FROM cart_items WHERE cart_id = ? AND product_id = ?',
-                [cart.id, productId]
+                'DELETE FROM cart_items WHERE cart_id = ? AND product_id = ? AND size = ?',
+                [cart.id, productId, normalizedSize]
             );
-            
+
             return result.changes > 0;
         } catch (error) {
             console.error('Error in removeItem:', error);

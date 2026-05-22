@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Dropdown from './Dropdown';
 import styles from './Header.module.css';
 
@@ -9,8 +10,20 @@ const NavCategories = ({
   onCategoryLeave,
   onCategoryClick,
   onSubcategoryClick,
-}) => (
+}) => {
+  const navigate = useNavigate();
+
+  return (
   <nav className={styles.nav} aria-label="Категории">
+    <div className={styles.navItem}>
+      <button
+        type="button"
+        className={styles.navButton}
+        onClick={() => navigate('/catalog')}
+      >
+        новинки
+      </button>
+    </div>
     {categories.map((category) => (
       <div
         key={category.id}
@@ -37,6 +50,7 @@ const NavCategories = ({
       </div>
     ))}
   </nav>
-);
+  );
+};
 
 export default NavCategories;

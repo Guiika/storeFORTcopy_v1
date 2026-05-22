@@ -13,6 +13,7 @@ import AccountPage from './pages/AccountPage/AccountPage';
 import OrdersPage from './pages/AccountPage/OrdersPage';
 import AdminProductCreatePage from './pages/AdminPage/stubs/AdminProductCreatePage';
 import AdminProductEditPage from './pages/AdminPage/stubs/AdminProductEditPage';
+import CheckoutPage from './pages/CheckoutPage/CheckoutPage';
 
 const NO_HEADER_PATHS = ['/login', '/register'];
 
@@ -30,6 +31,7 @@ function App() {
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/favorites" element={<FavoritesPage />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/account" element={<AccountPage />} />
           <Route path="/profile" element={<AccountPage />} />
           <Route path="/orders" element={<OrdersPage />} />

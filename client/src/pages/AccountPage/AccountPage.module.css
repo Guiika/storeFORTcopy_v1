@@ -110,7 +110,7 @@
   width: 300px;
   height: 40px;
   padding: 0;
-  background: #a48de2;
+  background: rgba(123, 98, 198, 0.7);
   color: white;
   border: none;
   cursor: pointer;
@@ -153,5 +153,5 @@
 }
 
 .toastSuccess .toastText {
-  color: #7B62C6;
+  color: rgba(123, 98, 198, 0.7);
 }

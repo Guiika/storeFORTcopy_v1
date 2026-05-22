@@ -21,6 +21,8 @@ const SORT_OPTIONS = [
 
 const normalizeProducts = (payload) => Array.isArray(payload) ? payload : (payload?.products || payload?.items || payload?.data || []);
 const toNumber = (value) => Number(String(value).replace(/[^\d.-]/g, '')) || 0;
+const formatPrice = (price) =>
+  price != null ? `${Number(price).toLocaleString('ru-RU')} ₽` : '—';
 
 const CatalogPage = () => {
   const navigate = useNavigate();
@@ -117,15 +119,15 @@ const CatalogPage = () => {
                           onClick={async (e) => { e.stopPropagation(); if (!user) return; if (inWishlist) await removeFromWishlist(product.id); else await addToWishlist(product.id); }}
                         >
                           <LikeIcon
-                            fill={inWishlist ? '#ffffff' : 'none'}
-                            stroke="#ffffff"
+                            fill={inWishlist ? 'rgba(123, 98, 198, 0.3)' : 'none'}
+                            stroke="rgba(123, 98, 198, 0.3)"
                             strokeWidth="1.5"
                             className={styles.actionIcon}
                           />
                         </button>
                       </div>
                     </div>
-                    <div className={styles.productMeta}><p>{product.name}</p><p>{product.brand}</p><p>{product.price} ₽</p></div>
+                    <div className={styles.productMeta}><p>{product.name}</p><p>{product.brand}</p><p>{formatPrice(product.price)}</p></div>
                   </button>
                 );
               })}

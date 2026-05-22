@@ -213,6 +213,19 @@ const ProductForm = ({ productId = null, initialData = {}, pendingImages = [] })
     setSelectedSubcategoryId(sub?.id ?? null);
   }, [subcategories]);
 
+  const handleDelete = async () => {
+    if (!window.confirm('Удалить товар?')) return;
+    setSaving(true);
+    try {
+      await productsService.deleteProduct(productId);
+      navigate('/admin', { state: { section: 'products' } });
+    } catch {
+      showError('Ошибка удаления');
+    } finally {
+      setSaving(false);
+    }
+  };
+
   const handleSave = async () => {
     const newErrors = {};
     if (!name.trim()) newErrors.name = true;
@@ -355,6 +368,17 @@ const ProductForm = ({ productId = null, initialData = {}, pendingImages = [] })
         >
           {saving ? 'Сохранение...' : 'Сохранить'}
         </button>
+
+        {productId && (
+          <button
+            type="button"
+            className={styles.deleteButton}
+            onClick={handleDelete}
+            disabled={saving}
+          >
+            Удалить товар
+          </button>
+        )}
       </div>
 
       {errorMsg && (

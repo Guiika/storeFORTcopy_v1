@@ -3,6 +3,7 @@ import { categoriesService } from '../../services/categoriesService';
 import editIcon from '../../assets/vector/Edit.svg';
 import addIcon from '../../assets/vector/add.svg';
 import checkIcon from '../../assets/vector/check.svg';
+import errorIcon from '../../assets/vector/error.svg';
 import styles from './CategoriesSection.module.css';
 
 const InlineInput = ({ value, onChange, onConfirm, onCancel, placeholder }) => (
@@ -36,6 +37,12 @@ const CategoriesSection = () => {
 
   const [addingSubTo, setAddingSubTo] = useState(null);
   const [newSubName, setNewSubName] = useState('');
+
+  const [errorMsg, setErrorMsg] = useState('');
+  const showError = (msg) => {
+    setErrorMsg(msg);
+    setTimeout(() => setErrorMsg(''), 3000);
+  };
 
   const load = async () => {
     try {
@@ -90,7 +97,9 @@ const CategoriesSection = () => {
     try {
       await categoriesService.deleteCategory(id);
       load();
-    } catch { /* ignore */ }
+    } catch (err) {
+      showError(err.response?.data?.error || 'Не удалось удалить категорию');
+    }
   };
 
   if (loading) return <p className={styles.loadingText}>Загрузка...</p>;
@@ -201,6 +210,13 @@ const CategoriesSection = () => {
           </div>
         ))}
       </div>
+
+      {errorMsg && (
+        <div className={styles.errorToast}>
+          <img src={errorIcon} alt="" className={styles.errorIcon} />
+          <p className={styles.errorLine}>{errorMsg}</p>
+        </div>
+      )}
     </div>
   );
 };

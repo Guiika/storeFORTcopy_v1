@@ -6,29 +6,164 @@
   color: rgba(0, 0, 0, 0.7);
 }
 
+/* ── Control row ── */
+.controlRow {
+  display: flex;
+  align-items: center;
+  gap: 300px;
+}
+
 .createButton {
-  display: block;
+  flex-shrink: 0;
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
-  color: #7B62C6;
+  color: rgba(123, 98, 198, 0.7);
   font-family: var(--font-family);
   font-size: var(--font-size-small);
   font-weight: 100;
 }
 
+/* ── Search ── */
+.searchInput {
+  flex: 1;
+  max-width: 300px;
+  border: none;
+  border-bottom: 1px solid black;
+  background: transparent;
+  outline: none;
+  padding-bottom: 5px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  color: black;
+}
+
+.searchInput::placeholder {
+  opacity: 0.5;
+}
+
+/* ── Filter dropdown ── */
+.filterWrap {
+  position: relative;
+  margin-left: auto;
+}
+
+.filterBtn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+}
+
+.filterIcon {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+}
+
+.filterDropdown {
+  position: absolute;
+  right: 0;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 10;
+}
+
+.filterOption {
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  padding: 0;
+  white-space: nowrap;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}
+
+.buttonText {
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}
+
+/* ── Bulk price row ── */
+.priceRow {
+  margin-top: 70px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.priceLabel {
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.priceInput {
+  width: 100px;
+  border: none;
+  border-bottom: 1px solid black;
+  background: transparent;
+  outline: none;
+  padding-bottom: 5px;
+  text-align: relative;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  color: black;
+}
+
+.priceInput::placeholder {
+  opacity: 0.5;
+}
+
+.priceApply {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  color: rgba(123, 98, 198, 0.7);
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}
+
+.priceApply:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* ── Loading / empty ── */
 .loadingText {
   font-family: var(--font-family);
   font-size: var(--font-size-small);
   font-weight: 100;
 }
 
+.emptyText {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  color: rgba(123, 98, 198, 0.7);
+}
+
 /* ── Grid ── */
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 300px);
-  gap: 40px;
+  gap: 70px;
 }
 
 /* ── Card ── */
@@ -43,7 +178,7 @@
 .cardImage {
   width: 300px;
   height: 400px;
-  background: #D6C0FF;
+  background: rgba(123, 98, 198, 0.7);
   position: relative;
   overflow: hidden;
 }
@@ -55,32 +190,79 @@
   display: block;
 }
 
-.editBtn {
+/* ── Card action buttons (top-right column) ── */
+.cardActions {
   position: absolute;
   top: 10px;
   right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1;
+}
+
+.actionBtn {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
-  line-height: 0;
-  z-index: 1;
+  flex-shrink: 0;
 }
 
-.editIcon {
-  width: 16px;
-  height: 16px;
+.actionIcon {
+  width: 20px;
+  height: 20px;
   display: block;
   filter: brightness(0) invert(1);
   opacity: 0.8;
 }
 
+.deactivateIcon {
+  font-size: 20px;
+  line-height: 1;
+  color: white;
+  opacity: 0.8;
+}
+
+/* ── Card meta ── */
 .cardMeta {
   margin-top: 12px;
   text-align: center;
 }
 
 .cardMeta p {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}
+
+/* ── Toast ── */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  padding: 16px 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+  z-index: 9999;
+}
+
+.toastIcon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.toastText {
   margin: 0;
   font-family: var(--font-family);
   font-size: var(--font-size-small);

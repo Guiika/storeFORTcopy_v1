@@ -67,7 +67,7 @@
   justify-content: space-between;
   gap: 10px;
   padding: 6px 12px;
-  background: #D6C0FF;
+  background: rgba(123, 98, 198, 0.7);
   border: none;
   cursor: pointer;
   font-family: var(--font-family);
@@ -109,7 +109,7 @@
 }
 
 .dropdownOptionActive {
-  background: #D6C0FF !important;
+  background: rgba(123, 98, 198, 0.7) !important;
 }
 
 /* ── Add new value row inside dropdown ── */
@@ -193,13 +193,33 @@
   font-weight: 100;
 }
 
+/* ── Delete button ── */
+.deleteButton {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-top: 10px;
+  background: none;
+  border: none;
+  text-align: center;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  color: rgba(123, 98, 198, 0.7);
+  cursor: pointer;
+}
+
+.deleteButton:disabled {
+  opacity: 0.5;
+}
+
 /* ── Save button ── */
 .saveButton {
   display: block;
   width: 100%;
   height: 40px;
   padding: 0;
-  background: #a48de2;
+  background: rgba(123, 98, 198, 0.7);
   color: white;
   border: none;
   text-align: center;

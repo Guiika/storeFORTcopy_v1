@@ -68,15 +68,14 @@ class CartController {
         try {
             const userId = req.userId;
             const { productId } = req.params;
-            const { quantity } = req.body;
+            const { quantity, size = null } = req.body;
             
             // Валидация количества
             if (!quantity || quantity < 1) {
                 return res.status(400).json({ error: 'Quantity must be at least 1' });
             }
             
-            // Обновляем количество
-            const updatedItem = await Cart.updateItemQuantity(userId, productId, quantity);
+            const updatedItem = await Cart.updateItemQuantity(userId, productId, quantity, size);
             
             // Получаем обновленную корзину
             const cart = await Cart.getCart(userId);
@@ -107,8 +106,9 @@ class CartController {
         try {
             const userId = req.userId;
             const { productId } = req.params;
-            
-            const removed = await Cart.removeItem(userId, productId);
+            const size = req.query.size ?? null;
+
+            const removed = await Cart.removeItem(userId, productId, size);
             
             if (!removed) {
                 return res.status(404).json({ error: 'Item not found in cart' });

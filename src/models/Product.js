@@ -76,17 +76,23 @@ class Product {
         const {
             category_id, min_price, max_price, in_stock_only = false,
             featured_only = false, search = '', limit = 50, offset = 0,
-            sort_by = 'created_at', sort_order = 'DESC'
+            sort_by = 'created_at', sort_order = 'DESC',
+            status // 'active' | 'inactive' | 'all' | undefined → default active
         } = filters;
-        
+
+        let activeCondition;
+        if (status === 'all') activeCondition = '1=1';
+        else if (status === 'inactive') activeCondition = 'p.is_active = 0';
+        else activeCondition = 'p.is_active = 1';
+
         let query = `
-            SELECT p.*, 
+            SELECT p.*,
                    c.name as category_name
             FROM products p
             LEFT JOIN categories c ON p.category_id = c.id
-            WHERE p.is_active = 1
+            WHERE ${activeCondition}
         `;
-        
+
         const params = [];
         
         // Применяем фильтры
@@ -146,10 +152,16 @@ class Product {
     static async count(filters = {}) {
         const {
             category_id, min_price, max_price, in_stock_only = false,
-            featured_only = false, search = ''
+            featured_only = false, search = '',
+            status
         } = filters;
-        
-        let query = 'SELECT COUNT(*) as count FROM products WHERE is_active = 1';
+
+        let activeCondition;
+        if (status === 'all') activeCondition = '1=1';
+        else if (status === 'inactive') activeCondition = 'is_active = 0';
+        else activeCondition = 'is_active = 1';
+
+        let query = `SELECT COUNT(*) as count FROM products WHERE ${activeCondition}`;
         const params = [];
         
         // Применяем фильтры
@@ -232,11 +244,11 @@ class Product {
         return this.findById(id);
     }
 
-    // Удаление товара (мягкое удаление)
+    // Полное удаление товара из БД
     static async delete(id) {
-        await db.run('UPDATE products SET is_active = 0 WHERE id = ?', [id]);
         await db.run('DELETE FROM cart_items WHERE product_id = ?', [id]);
         await db.run('DELETE FROM wishlist WHERE product_id = ?', [id]);
+        await db.run('DELETE FROM products WHERE id = ?', [id]);
         return true;
     }
 

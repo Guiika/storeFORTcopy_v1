@@ -62,3 +62,26 @@
   margin-top: 4px;
   font-size: 18px;
 }
+
+/* ── Wishlist icon ── */
+.iconWrap {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+}
+
+.iconBtn {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  line-height: 0;
+  display: block;
+}
+
+.heartIcon {
+  height: 20px;
+  width: auto;
+  display: block;
+}

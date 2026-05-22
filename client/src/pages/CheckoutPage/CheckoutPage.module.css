@@ -3,18 +3,20 @@
 }
 
 .inner {
-  padding: 100px 50px 0px;
+  padding: 100px 50px 0;
   display: flex;
   gap: 70px;
   align-items: flex-start;
 }
 
-.title {
+/* ── Left label ── */
+.label {
   margin: 0;
   font-family: var(--font-family);
   font-size: var(--font-size-small);
   font-weight: 100;
   color: rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
 }
 
 .loadingText {
@@ -24,54 +26,25 @@
   font-weight: 100;
 }
 
-/* ── Empty state ── */
-.emptyBlock {
-  margin-top: 70px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
-}
-
-.emptyText {
-  margin: 0;
-  font-family: var(--font-family);
-  font-size: var(--font-size-small);
-  font-weight: 100;
-  color: rgba(0, 0, 0, 0.5);
-}
-
-.catalogBtn {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  font-family: var(--font-family);
-  font-size: var(--font-size-small);
-  font-weight: 100;
-  color: rgba(123, 98, 198, 0.7);
-}
-
+/* ── Main content ── */
 .mainContent {
   flex: 1;
   min-width: 0;
 }
 
-/* ── Item list ── */
+/* ── Items list ── */
 .list {
   display: flex;
   flex-direction: column;
   gap: 70px;
 }
 
-/* ── Single row ── */
 .row {
   display: flex;
   align-items: stretch;
   gap: 70px;
 }
 
-/* ── Info column ── */
 .infoCol {
   flex: 1;
   min-width: 0;
@@ -86,14 +59,6 @@
   gap: 10px;
 }
 
-.textMuted {
-  margin: 0;
-  font-family: var(--font-family);
-  font-size: var(--font-size-small);
-  font-weight: 100;
-  opacity: 0.5;
-}
-
 .text {
   margin: 0;
   font-family: var(--font-family);
@@ -101,7 +66,14 @@
   font-weight: 100;
 }
 
-/* ── Bottom row: counter + price ── */
+.textMuted {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  color: rgba(0, 0, 0, 0.5);
+}
+
 .bottom {
   display: flex;
   align-items: center;
@@ -158,14 +130,139 @@
   background: rgba(123, 98, 198, 0.7);
 }
 
-/* ── Checkout button ── */
-.checkoutWrap {
+/* ── Promo + Total ── */
+.promoBlock {
+  margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.promoRow {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.promoInput {
+  width: 200px;
+  border: none;
+  border-bottom: 1px solid black;
+  background: transparent;
+  outline: none;
+  padding-bottom: 4px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  color: black;
+}
+
+.promoInput::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.promoBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: rgba(123, 98, 198, 0.7);
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}
+
+.discountNote {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  color: rgba(123, 98, 198, 0.7);
+}
+
+.totalRow {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+}
+
+.totalLabel {
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.totalValue {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: 100;
+  color: black;
+}
+
+/* ── Order data form ── */
+.formBlock {
+  margin-top: 70px;
+}
+
+.formTitle {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: 100;
+}
+
+.fields {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.fieldRow {
+  display: flex;
+  align-items: flex-end;
+  border-bottom: 1px solid black;
+  padding-bottom: 5px;
+  width: 400px;
+}
+
+.fieldLabel {
+  flex-shrink: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+}
+
+.fieldInput {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  padding-left: 20px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: 100;
+  color: black;
+}
+
+.fieldInput::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.optionalMark {
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 14px;
+}
+
+/* ── Submit ── */
+.submitWrap {
   margin-top: 200px;
   display: flex;
   justify-content: center;
 }
 
-.checkoutBtn {
+.submitBtn {
   width: 400px;
   height: 40px;
   padding: 0;
@@ -177,6 +274,11 @@
   font-family: var(--font-family);
   font-size: var(--font-size-small);
   font-weight: 100;
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: default;
 }
 
 /* ── Error toast ── */

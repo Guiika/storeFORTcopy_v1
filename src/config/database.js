@@ -145,21 +145,88 @@ class Database {
                 )
             `);
 
-            // ТАБЛИЦА ЭЛЕМЕНТОВ КОРЗИНЫ (НОВАЯ)
+            // ТАБЛИЦА ЭЛЕМЕНТОВ КОРЗИНЫ
             await this.run(`
                 CREATE TABLE IF NOT EXISTS cart_items (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     cart_id INTEGER NOT NULL,
                     product_id INTEGER NOT NULL,
                     quantity INTEGER NOT NULL DEFAULT 1 CHECK(quantity > 0),
+                    size TEXT NOT NULL DEFAULT '',
                     added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     FOREIGN KEY (cart_id) REFERENCES cart(id) ON DELETE CASCADE,
                     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
-                    UNIQUE(cart_id, product_id)
+                    UNIQUE(cart_id, product_id, size)
                 )
             `);
 
+            // Миграция: пересоздать cart_items если уникальный индекс не учитывает size
+            const cartItemsSql = await this.get(
+                "SELECT sql FROM sqlite_master WHERE type='table' AND name='cart_items'"
+            );
+            if (cartItemsSql && !cartItemsSql.sql.includes('UNIQUE(cart_id, product_id, size)')) {
+                await this.run('ALTER TABLE cart_items RENAME TO cart_items_old');
+                await this.run(`
+                    CREATE TABLE cart_items (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        cart_id INTEGER NOT NULL,
+                        product_id INTEGER NOT NULL,
+                        quantity INTEGER NOT NULL DEFAULT 1 CHECK(quantity > 0),
+                        size TEXT NOT NULL DEFAULT '',
+                        added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                        FOREIGN KEY (cart_id) REFERENCES cart(id) ON DELETE CASCADE,
+                        FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
+                        UNIQUE(cart_id, product_id, size)
+                    )
+                `);
+                await this.run(
+                    `INSERT OR IGNORE INTO cart_items (id, cart_id, product_id, quantity, size, added_at, updated_at)
+                     SELECT id, cart_id, product_id, quantity, COALESCE(size, ''), added_at, updated_at FROM cart_items_old`
+                );
+                await this.run('DROP TABLE cart_items_old');
+            }
+
+            // ТАБЛИЦА ЗАКАЗОВ
+            await this.run(`
+                CREATE TABLE IF NOT EXISTS orders (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    user_id INTEGER NOT NULL,
+                    status TEXT DEFAULT 'новый',
+                    total_price REAL NOT NULL,
+                    promo_code TEXT,
+                    discount_percent REAL DEFAULT 0,
+                    first_name TEXT,
+                    last_name TEXT,
+                    email TEXT,
+                    phone TEXT,
+                    delivery_address TEXT,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+                )
+            `);
+
+            // Миграция: добавить delivery_address если таблица уже существует без этой колонки
+            try {
+                await this.run('ALTER TABLE orders ADD COLUMN delivery_address TEXT');
+            } catch { /* колонка уже существует */ }
+
+            // ТАБЛИЦА ПОЗИЦИЙ ЗАКАЗА
+            await this.run(`
+                CREATE TABLE IF NOT EXISTS order_items (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    order_id INTEGER NOT NULL,
+                    product_id INTEGER,
+                    name TEXT NOT NULL,
+                    brand TEXT,
+                    size TEXT,
+                    color TEXT,
+                    quantity INTEGER NOT NULL,
+                    price REAL NOT NULL,
+                    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
+                )
+            `);
 
             // Индексы для оптимизации
             // Для пользователей

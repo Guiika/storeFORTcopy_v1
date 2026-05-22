@@ -38,56 +38,52 @@ const CartPage = () => {
 
   if (!user) return null;
 
+  const itemKey = (item) => `${item.product_id}__${item.size || ''}`;
+
   const handleDecrease = (item) => {
+    const key = itemKey(item);
     const newQty = item.localQty - 1;
 
     setLocalItems((prev) =>
-      prev.map((i) => i.product_id === item.product_id ? { ...i, localQty: newQty } : i)
+      prev.map((i) => itemKey(i) === key ? { ...i, localQty: newQty } : i)
     );
 
     if (newQty <= 0) {
-      // schedule removal after 2s
       const timer = setTimeout(async () => {
-        setRemovingIds((prev) => new Set(prev).add(item.product_id));
+        setRemovingIds((prev) => new Set(prev).add(key));
         try {
-          await removeFromCart(item.product_id);
+          await removeFromCart(item.product_id, item.size);
         } catch {
           showError('Не удалось удалить товар');
-          // revert
           setLocalItems((prev) =>
-            prev.map((i) => i.product_id === item.product_id ? { ...i, localQty: 1 } : i)
+            prev.map((i) => itemKey(i) === key ? { ...i, localQty: 1 } : i)
           );
         } finally {
-          setRemovingIds((prev) => {
-            const next = new Set(prev);
-            next.delete(item.product_id);
-            return next;
-          });
+          setRemovingIds((prev) => { const s = new Set(prev); s.delete(key); return s; });
         }
       }, 2000);
-      removeTimers.current[item.product_id] = timer;
+      removeTimers.current[key] = timer;
     } else {
-      // cancel any pending removal
-      clearTimeout(removeTimers.current[item.product_id]);
-      delete removeTimers.current[item.product_id];
-      updateQuantity(item.product_id, newQty).catch(() => showError('Ошибка обновления количества'));
+      clearTimeout(removeTimers.current[key]);
+      delete removeTimers.current[key];
+      updateQuantity(item.product_id, newQty, item.size).catch(() => showError('Ошибка обновления количества'));
     }
   };
 
   const handleIncrease = (item) => {
+    const key = itemKey(item);
     const newQty = item.localQty + 1;
 
-    // cancel pending removal if user increases back from 0
-    clearTimeout(removeTimers.current[item.product_id]);
-    delete removeTimers.current[item.product_id];
+    clearTimeout(removeTimers.current[key]);
+    delete removeTimers.current[key];
 
     setLocalItems((prev) =>
-      prev.map((i) => i.product_id === item.product_id ? { ...i, localQty: newQty } : i)
+      prev.map((i) => itemKey(i) === key ? { ...i, localQty: newQty } : i)
     );
-    updateQuantity(item.product_id, newQty).catch(() => showError('Ошибка обновления количества'));
+    updateQuantity(item.product_id, newQty, item.size).catch(() => showError('Ошибка обновления количества'));
   };
 
-  const visibleItems = localItems.filter((i) => !removingIds.has(i.product_id));
+  const visibleItems = localItems.filter((i) => !removingIds.has(itemKey(i)));
   const isEmpty = visibleItems.length === 0 && !loading;
 
   return (
@@ -119,7 +115,7 @@ const CartPage = () => {
                   const total = item.price * item.localQty;
 
                   return (
-                    <div key={item.product_id} className={styles.row}>
+                    <div key={itemKey(item)} className={styles.row}>
                       <div className={styles.infoCol}>
                         <div className={styles.details}>
                           <p className={styles.text}>{item.name}</p>
