@@ -171,7 +171,7 @@ const CartPage = () => {
         </div>
       </div>
 
-      <div style={{ marginTop: 200 }}>
+      <div className={styles.footerWrap}>
         <Footer />
       </div>
 

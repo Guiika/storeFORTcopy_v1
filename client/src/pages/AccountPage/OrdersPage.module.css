@@ -114,3 +114,35 @@
   font-size: var(--font-size-small);
   font-weight: 100;
 }
+
+@media (max-width: 768px) {
+  .list {
+    gap: 40px;
+  }
+
+  .row {
+    gap: 24px;
+  }
+
+  .imageWrap {
+    width: 120px;
+    height: 160px;
+  }
+
+  .errorToast {
+    left: 24px;
+    right: 24px;
+    bottom: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .row {
+    gap: 16px;
+  }
+
+  .imageWrap {
+    width: 104px;
+    height: 140px;
+  }
+}

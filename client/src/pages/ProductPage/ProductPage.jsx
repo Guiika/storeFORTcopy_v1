@@ -192,7 +192,7 @@ const ProductPage = () => {
 
       {/* ── New arrivals ── */}
       {newArrivals.length > 0 && (
-        <div style={{ marginTop: 200 }}>
+        <div className={styles.relatedSection}>
           <NewArrivalsSection
             products={newArrivals}
             onProductClick={(productId) => navigate(`/product/${productId}`)}
@@ -200,7 +200,7 @@ const ProductPage = () => {
         </div>
       )}
 
-      <div style={{ marginTop: 200 }}>
+      <div className={styles.footerWrap}>
         <Footer />
       </div>
 

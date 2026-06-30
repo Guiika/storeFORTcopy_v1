@@ -208,6 +208,11 @@
   color: rgba(0, 0, 0, 0.5);
 }
 
+.relatedSection,
+.footerWrap {
+  margin-top: 200px;
+}
+
 /* ── Error toast ── */
 .errorToast {
   position: fixed;
@@ -233,4 +238,100 @@
   font-family: var(--font-family);
   font-size: var(--font-size-small);
   font-weight: 100;
+}
+
+@media (max-width: 768px) {
+  .loadingText {
+    padding: 80px 24px;
+  }
+
+  .productBlock {
+    display: block;
+  }
+
+  .galleryCol {
+    padding: 40px 24px 0;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .thumbnails {
+    margin-top: 16px;
+    margin-right: 0;
+    max-height: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .thumb {
+    width: 80px;
+    height: 108px;
+  }
+
+  .mainImage,
+  .mainImagePlaceholder {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 4;
+  }
+
+  .infoCol {
+    padding: 40px 24px 0;
+  }
+
+  .brand,
+  .title {
+    font-size: 26px;
+    line-height: 1.3;
+  }
+
+  .sizes {
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .addRow {
+    gap: 24px;
+  }
+
+  .relatedSection,
+  .footerWrap {
+    margin-top: 100px;
+  }
+
+  .errorToast {
+    left: 24px;
+    right: 24px;
+    bottom: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .loadingText {
+    padding: 70px 16px;
+  }
+
+  .galleryCol,
+  .infoCol {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .brand,
+  .title {
+    font-size: 24px;
+  }
+
+  .addRow {
+    align-items: stretch;
+    gap: 18px;
+  }
+
+  .relatedSection,
+  .footerWrap {
+    margin-top: 80px;
+  }
 }

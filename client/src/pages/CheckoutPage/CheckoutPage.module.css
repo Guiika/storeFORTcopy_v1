@@ -276,6 +276,10 @@
   cursor: default;
 }
 
+.footerWrap {
+  margin-top: 200px;
+}
+
 /* ── Error toast ── */
 .errorToast {
   position: fixed;
@@ -301,4 +305,95 @@
   font-family: var(--font-family);
   font-size: var(--font-size-small);
   font-weight: 100;
+}
+
+@media (max-width: 768px) {
+  .inner {
+    padding: 70px 24px 0;
+    display: block;
+  }
+
+  .mainContent {
+    margin-top: 30px;
+  }
+
+  .list {
+    gap: 40px;
+  }
+
+  .row {
+    gap: 24px;
+  }
+
+  .imageWrap {
+    width: 120px;
+    height: 160px;
+  }
+
+  .bottom {
+    margin-top: 30px;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .promoBlock,
+  .formBlock {
+    margin-top: 50px;
+  }
+
+  .formCols {
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  .col {
+    width: 100%;
+  }
+
+  .submitWrap {
+    margin-top: 80px;
+  }
+
+  .submitBtn {
+    width: 100%;
+  }
+
+  .footerWrap {
+    margin-top: 100px;
+  }
+
+  .errorToast {
+    left: 24px;
+    right: 24px;
+    bottom: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .inner {
+    padding: 64px 16px 0;
+  }
+
+  .row {
+    gap: 16px;
+  }
+
+  .imageWrap {
+    width: 104px;
+    height: 140px;
+  }
+
+  .promoRow,
+  .totalRow {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .promoInput {
+    width: 100%;
+  }
+
+  .footerWrap {
+    margin-top: 80px;
+  }
 }

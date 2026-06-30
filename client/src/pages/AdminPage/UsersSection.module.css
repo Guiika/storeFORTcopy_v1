@@ -239,3 +239,71 @@
   font-size: var(--font-size-small);
   font-weight: 100;
 }
+
+@media (max-width: 768px) {
+  .list {
+    gap: 48px;
+    margin-top: 50px;
+  }
+
+  .headerRow {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .toggleBtn {
+    width: 100%;
+  }
+
+  .actions {
+    width: 100%;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  .confirmRow {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+    padding-left: 24px;
+  }
+
+  .details {
+    padding-left: 24px;
+  }
+
+  .detailsGrid {
+    gap: 30px;
+  }
+
+  .detailValue,
+  .confirmText {
+    overflow-wrap: anywhere;
+  }
+
+  .editInput {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .errorToast {
+    left: 24px;
+    right: 24px;
+    bottom: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .confirmRow,
+  .details {
+    padding-left: 0;
+  }
+
+  .roleToggle {
+    flex-wrap: wrap;
+  }
+
+  .detailsGrid {
+    gap: 20px;
+  }
+}

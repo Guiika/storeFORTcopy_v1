@@ -147,3 +147,50 @@
   font-size: var(--font-size-small);
   font-weight: 100;
 }
+
+@media (max-width: 768px) {
+  .content {
+    padding: 50px 24px;
+  }
+
+  .columns {
+    flex-direction: column;
+    gap: 50px;
+    margin-top: 70px;
+  }
+
+  .column {
+    width: 100%;
+  }
+
+  .inputWrapper,
+  .input {
+    width: 100%;
+  }
+
+  .submitButton,
+  .loginButton {
+    width: 100%;
+  }
+
+  .errorToast {
+    left: 24px;
+    right: 24px;
+    bottom: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 40px 16px;
+  }
+
+  .columns {
+    gap: 40px;
+    margin-top: 60px;
+  }
+
+  .submitButton {
+    margin-top: 60px;
+  }
+}

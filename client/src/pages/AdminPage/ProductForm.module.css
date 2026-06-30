@@ -229,3 +229,54 @@
   cursor: pointer;
   margin-top: 70px;
 }
+
+@media (max-width: 768px) {
+  .form {
+    max-width: none;
+  }
+
+  .textRow,
+  .dropdownRow {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .fieldLabel,
+  .dropdownLabel {
+    white-space: normal;
+  }
+
+  .textInput {
+    padding-left: 0;
+  }
+
+  .dropdownWrap {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .dropdownOption {
+    text-align: left;
+  }
+
+  .dropdownAddRow {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .dropdownAddInput {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .saveButton {
+    margin-top: 50px;
+  }
+
+  .errorToast {
+    left: 24px;
+    right: 24px;
+    bottom: 16px;
+  }
+}

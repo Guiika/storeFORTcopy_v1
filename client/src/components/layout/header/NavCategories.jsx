@@ -10,16 +10,33 @@ const NavCategories = ({
   onCategoryLeave,
   onCategoryClick,
   onSubcategoryClick,
+  isMobileOpen,
+  onNavigate,
 }) => {
   const navigate = useNavigate();
 
+  const isMobileViewport = () => window.matchMedia('(max-width: 768px)').matches;
+
+  const handleNewArrivalsClick = () => {
+    navigate('/catalog');
+    onNavigate?.();
+  };
+
+  const handleCategoryButtonClick = (category) => {
+    if (category.children?.length > 0 && isMobileViewport()) {
+      onCategoryEnter(activeCategoryId === category.id ? null : category.id);
+      return;
+    }
+    onCategoryClick(category.id);
+  };
+
   return (
-  <nav className={styles.nav} aria-label="Категории">
+  <nav className={`${styles.nav} ${isMobileOpen ? styles.navOpen : ''}`} aria-label="Категории">
     <div className={styles.navItem}>
       <button
         type="button"
         className={styles.navButton}
-        onClick={() => navigate('/catalog')}
+        onClick={handleNewArrivalsClick}
       >
         новинки
       </button>
@@ -34,7 +51,7 @@ const NavCategories = ({
         <button
           type="button"
           className={styles.navButton}
-          onClick={() => onCategoryClick(category.id)}
+          onClick={() => handleCategoryButtonClick(category)}
         >
           {category.name}
         </button>

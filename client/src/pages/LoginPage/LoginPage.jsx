@@ -36,7 +36,7 @@ const LoginPage = () => {
           <FortLogo fill="rgba(123, 98, 198, 0.7)" className={styles.logo} />
         </button>
 
-        <div className={styles.inputWrapper} style={{ marginTop: '200px' }}>
+        <div className={`${styles.inputWrapper} ${styles.emailField}`}>
           <input
             type="email"
             className={styles.input}
@@ -47,7 +47,7 @@ const LoginPage = () => {
           />
         </div>
 
-        <div className={styles.inputWrapper} style={{ marginTop: '70px' }}>
+        <div className={`${styles.inputWrapper} ${styles.passwordField}`}>
           <input
             type={showPassword ? 'text' : 'password'}
             className={styles.input}
@@ -72,7 +72,6 @@ const LoginPage = () => {
         <button
           type="button"
           className={styles.loginButton}
-          style={{ marginTop: '200px' }}
           onClick={handleLogin}
         >
           Войти
@@ -81,7 +80,6 @@ const LoginPage = () => {
         <button
           type="button"
           className={styles.registerButton}
-          style={{ marginTop: '10px' }}
           onClick={() => navigate('/register')}
         >
           Зарегистрироваться

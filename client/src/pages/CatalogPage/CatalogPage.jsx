@@ -35,6 +35,7 @@ const CatalogPage = () => {
   const [loading, setLoading] = useState(true);
   const [sortOpen, setSortOpen] = useState(false);
   const [sortBy, setSortBy] = useState('new');
+  const [filtersOpen, setFiltersOpen] = useState(false);
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [selectedColors, setSelectedColors] = useState([]);
@@ -47,6 +48,7 @@ const CatalogPage = () => {
         setSelectedBrands([]);
         setSelectedSizes([]);
         setSelectedColors([]);
+        setFiltersOpen(false);
         const response = categoryId
           ? await productsService.getCategoryPage(categoryId)
           : await productsService.getProducts();
@@ -89,7 +91,16 @@ const CatalogPage = () => {
       <img src={bannerCatalog} alt="Каталог баннер" className={styles.banner} />
 
       <section className={styles.content}>
-        <aside className={styles.filters}>{/* same filters */}
+        <button
+          type="button"
+          className={styles.filterToggle}
+          onClick={() => setFiltersOpen((value) => !value)}
+          aria-expanded={filtersOpen}
+        >
+          Фильтры
+        </button>
+
+        <aside className={`${styles.filters} ${filtersOpen ? styles.filtersOpen : ''}`}>{/* same filters */}
           <div className={styles.filterGroup}><h3 className={styles.filterTitle}>Бренд</h3><div className={styles.filterList}>{filterData.brands.map((brand) => <label key={brand} className={styles.checkItem}><input type="checkbox" checked={selectedBrands.includes(brand)} onChange={() => toggleSelection(brand, selectedBrands, setSelectedBrands)} /><span className={styles.checkSquare} /><span className={styles.buttonText}>{brand}</span></label>)}</div></div>
           <div className={styles.filterGroup}><h3 className={styles.filterTitle}>Размер</h3><div className={styles.filterList}>{SIZES.map((size) => <label key={size} className={styles.checkItem}><input type="checkbox" checked={selectedSizes.includes(size)} onChange={() => toggleSelection(size, selectedSizes, setSelectedSizes)} /><span className={styles.checkSquare} /><span className={styles.buttonText}>{size}</span></label>)}</div></div>
           <div className={styles.filterGroup}><h3 className={styles.filterTitle}>Цвет</h3><div className={styles.filterList}>{filterData.colors.map((color) => { const key = String(color).toLowerCase(); const dotColor = key.startsWith('#') ? color : (DEFAULT_COLOR_MAP[key] || '#7f7f7f'); return <label key={color} className={styles.checkItem}><input type="checkbox" checked={selectedColors.includes(color)} onChange={() => toggleSelection(color, selectedColors, setSelectedColors)} /><span className={styles.checkSquare} /><span className={styles.colorDot} style={{ backgroundColor: dotColor }} /><span className={styles.buttonText}>{color}</span></label>; })}</div></div>

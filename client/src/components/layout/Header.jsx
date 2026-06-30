@@ -27,6 +27,7 @@ const Header = () => {
   const [categories, setCategories] = useState([]);
   const [activeCategoryId, setActiveCategoryId] = useState(null);
   const [isCategoriesLoading, setIsCategoriesLoading] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   React.useEffect(() => {
     let isMounted = true;
@@ -57,9 +58,23 @@ const Header = () => {
     [isDropdownOpen]
   );
 
-  const handleLogoClick = () => navigate('/');
-  const handleCategoryClick = (categoryId) => navigate(`/catalog?categoryId=${categoryId}`);
-  const handleSubcategoryClick = (categoryId) => navigate(`/catalog?categoryId=${categoryId}`);
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+    setActiveCategoryId(null);
+  };
+
+  const handleLogoClick = () => {
+    navigate('/');
+    closeMobileMenu();
+  };
+  const handleCategoryClick = (categoryId) => {
+    navigate(`/catalog?categoryId=${categoryId}`);
+    closeMobileMenu();
+  };
+  const handleSubcategoryClick = (categoryId) => {
+    navigate(`/catalog?categoryId=${categoryId}`);
+    closeMobileMenu();
+  };
 
   return (
     <header className={headerClassName}>
@@ -68,14 +83,28 @@ const Header = () => {
           <Logo />
         </button>
 
+        <button
+          type="button"
+          className={`${styles.menuButton} ${isMobileMenuOpen ? styles.menuButtonOpen : ''}`}
+          onClick={() => setIsMobileMenuOpen((value) => !value)}
+          aria-label="Открыть меню"
+          aria-expanded={isMobileMenuOpen}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+
         {!isCategoriesLoading && (
           <NavCategories
             categories={categories}
             activeCategoryId={activeCategoryId}
+            isMobileOpen={isMobileMenuOpen}
             onCategoryEnter={setActiveCategoryId}
             onCategoryLeave={() => setActiveCategoryId(null)}
             onCategoryClick={handleCategoryClick}
             onSubcategoryClick={handleSubcategoryClick}
+            onNavigate={closeMobileMenu}
           />
         )}
       </div>

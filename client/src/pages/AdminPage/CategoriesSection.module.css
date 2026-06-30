@@ -165,3 +165,54 @@
   font-weight: 100;
   color: black;
 }
+
+@media (max-width: 768px) {
+  .wrapper {
+    max-width: none;
+  }
+
+  .categoryBlock {
+    margin-bottom: 50px;
+  }
+
+  .row {
+    gap: 20px;
+  }
+
+  .actions {
+    gap: 20px;
+  }
+
+  .subcategories {
+    padding-left: 24px;
+    gap: 22px;
+  }
+
+  .inlineForm {
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .inlineInput {
+    min-width: 0;
+    width: min(220px, 100%);
+  }
+
+  .errorToast {
+    left: 24px;
+    right: 24px;
+    bottom: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .subcategories {
+    padding-left: 16px;
+  }
+
+  .categoryName,
+  .subName {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+}
